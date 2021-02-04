@@ -1,8 +1,8 @@
 # print("Hello world!");
 # print('Hello world!');
 
-print("Hello world!");
-print('Hello world!');
+print("Hello world!")
+print('Hello world!')
 #ctrl + / 
 #위에 키를 누르면 선택한 모든 줄을 주석처리시킬 수 있다.
 

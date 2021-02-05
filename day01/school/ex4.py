@@ -1,4 +1,3 @@
-print("hello world!")
 a=[],[],[],[],[],[],[]
 import csv
 with open('passby_data.csv', 'r')as f :
@@ -16,8 +15,3 @@ for i in range(0, 7) : #월~일요일까지 7번 반복
     for j in range(0, len(a[i])) : #데이터 수만큼 반복
         print(x_title[i], "[", j, "] = ", a[i][j]) #시간대별로 데이터 출력
 
-
-
-
-
-print("finished program")

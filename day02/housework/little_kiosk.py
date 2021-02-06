@@ -7,6 +7,22 @@ fanta = 1200
 print("얼마를 넣으실건가요?\n>>",end="")
 input_cost = int(input())
 
+while True:
+    print("무엇을 고르실건가요?\n>>",end="")
+    input_kind = str(input())
+    if input_kind == '1' or input_kind == "콜라":
+        input_kind = "콜라"
+        cost = coke
+        break
+    elif input_kind == '2' or input_kind == "사이다": 
+        input_kind = "콜라"
+        cost = soda
+        break
+    elif input_kind == '3' or input_kind == "환타": 
+        input_kind = "콜라"
+        cost = fanta
+        break
+
 
 
 

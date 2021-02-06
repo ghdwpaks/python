@@ -24,6 +24,11 @@ while True:
         break
 
 
+if input_cost < cost :
+    print("금액이 부족하여 음료수를 제공할 수 없습니다.")
+else :
+    print("주문하신"+input_kind+"가 나왔습니다.")
+    print("거스름돈은",(int(input_cost)-cost),"원 입니다.")
 
 
 

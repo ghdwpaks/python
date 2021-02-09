@@ -11,6 +11,8 @@ print(dict1["py"])
 print(dict1["C_lang"])
 print(dict1["java"])
 print()
+for i in dict1 : print(i)
+print()
 
 print(dict1["py"]["score"])
 print(dict1["py"]["class_time"])
@@ -39,3 +41,7 @@ print()
 print(dict2["dict2_2"]["math"])
 print()
 print(dict2["dict2_2"]["math"]["score"])
+
+
+
+

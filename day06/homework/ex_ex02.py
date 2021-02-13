@@ -42,7 +42,8 @@ while(True) :
         print1 = "권총"
         print("{}의 데미지 : {} , 연사속도 : {}".format(print1, wp[in1]["dm"],wp[in1]["rpm"]))
     print("\n\n")
-    
+
+
 
 
 print("프로그램을 종료합니다")

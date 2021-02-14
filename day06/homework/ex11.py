@@ -1,0 +1,20 @@
+in1 = int(input("(in1)숫자 입력 : "))
+in2 = int(input("(in2)숫자 입력 : "))
+
+print("{} + {} = {}".format(in1,in2,in1 + in2))
+print("{} - {} = {}".format(in1,in2,in1 - in2))
+print("{} * {} = {}".format(in1,in2,in1 * in2))
+print("{} / {} = {}".format(in1,in2,in1 / in2))
+print("{} // {} = {}".format(in1,in2,in1 // in2))
+print("{} % {} = {}".format(in1,in2,in1 % in2))
+print("{} ** {} = {}".format(in1,in2,in1 ** in2))
+print("\n\n")
+
+print("{} 더하기 {} = {}".format(in1,in2,in1 + in2))
+print("{} 빼기 {} = {}".format(in1,in2,in1 - in2))
+print("{} 곱하기 {} = {}".format(in1,in2,in1 * in2))
+print("{} 나누기 {} = {}".format(in1,in2,in1 / in2))
+print("{} 나누기의 몫 {} = {}".format(in1,in2,in1 // in2))
+print("{} 나누기의 나머지 {} = {}".format(in1,in2,in1 % in2))
+print("{}의 {}제곱 = {}".format(in1,in2,in1 ** in2))
+

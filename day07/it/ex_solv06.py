@@ -40,5 +40,23 @@ if res :
 
 
 
+'''선생님 답안'''
 
+kor =  int(input("국어 점수 입력 : "))
+eng =  int(input("영어 점수 입력 : "))
+math  =  int(input("수학 점수 입력 : "))
+print_string = ''
+avg = (kor + eng + math) / 3
+if avg >= 60 :
+    if kor < 40 :
+        print_string = "국어 과목 불합격"
+    elif eng < 40 :
+        print_string = "영어 과목 불합격"
+    elif math < 40 :
+        print_string = '수학 과목 불합격'
+    else :
+        print_string = "합격"
+else :
+    print_string = '평균 {:.2f}점으로 불합격'.format(avg)
 
+print(print_string)

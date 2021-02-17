@@ -13,3 +13,25 @@ if g == 'A' or g == "B" :
     print("참 잘했어요.")
 elif g == 'C' or g == 'D' :
     print("분발합시다.")
+
+
+
+'''선생님 답안'''
+grade = input("학점 입력 : ")
+print_string = ''
+
+if grade == 'A' or grade == "B" :
+    print_string = "참 잘했어요."
+elif grade == "D" or grade == "D" :
+    print_string = '분발합시다.'
+print("{}학점은 {}".format(grade,print_string))
+
+
+
+
+
+
+
+
+
+

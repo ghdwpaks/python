@@ -32,6 +32,7 @@ while not exit :
                 i += 1
     elif "종료" in in1 or  in1 == '3' :
         print("프로그램을 종료합니다.")
+        break
     else :
         print("메뉴를 보시고 다시 입력해주세요")
 

@@ -14,22 +14,22 @@ for i in range(5) :
     print("{}번째 반복".format(i))
 print("\n\n")
 
-print()
+print(2)
 for i in range (1,5) :
     print("{}번째 반복".format(i))
 print("\n\n")
 
-print()
+print(3)
 for i in range(1,10) :
     print("{}번째 반복".format(i))
 print("\n\n")
 
-print()
+print(4)
 for i in range(1,10,2) :
     print("{}번째 반복".format(i))
 print("\n\n")
 
-print()
+print(5)
 for i in range(1,10,2) :
     print("{}번째 반복".format(i))
 print("\n\n")

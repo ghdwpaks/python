@@ -43,6 +43,68 @@ def check_difficult() :
         print("난이도는 보통입니다.")
         n1_object = 0
 
+def select_team_for_member() :
+    os.system('cls')
+    global dis_gunner
+    global dis_driver
+    global dis_hack
+
+
+    in_gun = 0
+    print("총잡이의 지분은 몇입니까?")
+    in_gun = only_number(in_gun,"총잡이")
+    dis_gunner = in_gun
+
+    in_driver = 0
+    print("운전사의 지분은 몇입니까?")
+    in_driver = only_number(in_driver,'운전사')
+    dis_driver = in_driver
+
+    in_hack = 0
+    print("해커의 지분은 몇입니까?")
+    in_hack = only_number(in_hack,'해커')
+    dis_hack = in_hack
+
+
+def select_team_gunner(in_gun) :
+    global dis_gunner
+    if in_gun == 1 :
+        dis_gunner = 5
+    elif in_gun == 2 :
+        dis_gunner = 7
+    elif in_gun == 3 :
+        dis_gunner = 8
+    elif in_gun == 4 :
+        dis_gunner = 9 
+    elif in_gun == 5 :
+        dis_gunner = 10
+    
+def select_team_driver(in_driver) :
+    global dis_driver
+    if in_driver == 1 :
+        dis_driver = 5
+    elif in_driver == 2 :
+        dis_driver = 6
+    elif in_driver == 3 :
+        dis_driver = 7
+    elif in_driver == 4 :
+        dis_driver = 9 
+    elif in_driver == 5 :
+        dis_driver = 10
+
+def select_team_hack(in_hack) :
+    global dis_hack
+    if in_hack == 1 :
+        dis_hack = 3
+    elif in_hack == 2 :
+        dis_hack = 5
+    elif in_hack == 3 :
+        dis_hack = 7
+    elif in_hack == 4 :
+        dis_hack = 9 
+    elif in_hack == 5 :
+        dis_hack = 10
+
 
 def select_team() :
     #print("총잡이, 운전사, 해커의 지분을 결정하는 함수에 진입했습니다.")
@@ -58,19 +120,8 @@ def select_team() :
     print()
     in_gun = 0
     in_gun = only_number(in_gun,"총잡이")
-    global dis_gunner
-    if in_gun == 1 :
-        dis_gunner = 5
-    elif in_gun == 2 :
-        dis_gunner = 7
-    elif in_gun == 3 :
-        dis_gunner = 8
-    elif in_gun == 4 :
-        dis_gunner = 9 
-    elif in_gun == 5 :
-        dis_gunner = 10
+    select_team_driver(in_gun)
     print("\n\n")
-
 
 
 
@@ -86,21 +137,8 @@ def select_team() :
     print()
     in_driver = 0
     in_driver = only_number(in_driver,"운전사")
-    global dis_driver
-    if in_driver == 1 :
-        dis_driver = 5
-    elif in_driver == 2 :
-        dis_driver = 6
-    elif in_driver == 3 :
-        dis_driver = 7
-    elif in_driver == 4 :
-        dis_driver = 9 
-    elif in_driver == 5 :
-        dis_driver = 10
+    select_team_driver(in_driver)
     print("\n\n")
-
-
-
 
 
 
@@ -115,17 +153,7 @@ def select_team() :
     print()
     in_hack = 0
     in_hack = only_number(in_hack,"해커")
-    global dis_hack
-    if in_hack == 1 :
-        dis_hack = 3
-    elif in_hack == 2 :
-        dis_hack = 5
-    elif in_hack == 3 :
-        dis_hack = 7
-    elif in_hack == 4 :
-        dis_hack = 9 
-    elif in_hack == 5 :
-        dis_hack = 10
+    select_team_hack(in_hack)
     print("\n\n")
 
 def cal_add_cost(c) :
@@ -232,116 +260,157 @@ def how_much_your_share() : #how much your share
 
 
 print("Hello world!")
+os.system('cls')
 
 while p :
-    os.system('cls')
-    print("카지노 습격 수익 계산기입니다.")
-    print("수익계산은 다음과 같은 순서로 이루어집니다.")
-    print("1. 목표물 설정")
-    print("2. 접근 방식 설정")
-    print("3. 총잡이 지정")
-    print("4. 운전사 지정")
-    print("5. 해커 지정")
-    print("6. 접근 방식에 따른 보조준비작업 지정")
-    print("\n")
-    os.system('pause')
-    print()
+    in1 = input("호스트로 습격 하시나요?\n>>")
+    if in1 == "1" or in1 == "네" or in1 == "예" or in1 == "ㅖ" or in1 == "P" or in1 == "p" or in1 == "응" or in1 == "어" or in1 == "맞아" or in1 == "yes" or in1 == "YES" or in1 == "y" or in1 == "yeah" or in1 == "ㅇ" or in1 == "Y"  or in1 == "dmd" or in1 == "akwdk" or in1 == "d" or in1 == "dd":
+        ans1 = 1
+    elif in1 == "0" or in1 == "아니" or in1 == "ㄴ" or in1 == "아님" or in1 == "아니야" or in1 == "아닙니다" or in1 == "n" or in1 == "N" or in1 == "dksl" or in1 == "no" or in1 == "NO" or in1 == "ㄴㄴ" or in1 == "아니요"  or in1 == "ss":
+        ans1 = 0
 
-
-    os.system('cls')
-    print("이번 목표물은 무엇입니까?")
-    print("1.현금")
-    print("2.금")
-    print("3.예술품")
-    print("4.다이아몬드")
-    print()
-    u1_object = 0
-    u1_object = only_number(u1_object,"목표물")
-    if u1_object == 1 :
-        #print("목표물은 현금 입니다")
-        n2_object = 1
-    elif u1_object == 2 :
-        #print("목표물은 금 입니다.")
-        n2_object = 2
-    elif u1_object == 3 :
-        #print("목표물은 예술품 입니다.")
-        n2_object = 3
-    elif u1_object == 4 :
-        #print("몰표물은 다이아몬드 입니다.")
-        n2_object = 4
-    print("\n\n")
+    if ans1 == 1 :
 
 
 
-    os.system('cls')
-    print("접근 방식은 무엇입니까?")
-    print("1. 대 사기극")
-    print("2. 비밀 작전")
-    print("3. 공격 전술")
-    print()
-    u2_enter_type = 0
-    u2_enter_type = only_number(u2_enter_type, "접근 방식")
+        os.system('cls')
+        print("카지노 습격 수익 계산기입니다.")
+        print("수익계산은 다음과 같은 순서로 이루어집니다.")
+        print("1. 목표물 설정")
+        print("2. 접근 방식 설정")
+        print("3. 총잡이 지정")
+        print("4. 운전사 지정")
+        print("5. 해커 지정")
+        print("6. 접근 방식에 따른 보조준비작업 지정")
+        print("\n")
+        os.system('pause')
+        print()
+
+
+        os.system('cls')
+        print("이번 목표물은 무엇입니까?")
+        print("1.현금")
+        print("2.금")
+        print("3.예술품")
+        print("4.다이아몬드")
+        print()
+        u1_object = 0
+        u1_object = only_number(u1_object,"목표물")
+        if u1_object == 1 :
+            #print("목표물은 현금 입니다")
+            n2_object = 1
+        elif u1_object == 2 :
+            #print("목표물은 금 입니다.")
+            n2_object = 2
+        elif u1_object == 3 :
+            #print("목표물은 예술품 입니다.")
+            n2_object = 3
+        elif u1_object == 4 :
+            #print("몰표물은 다이아몬드 입니다.")
+            n2_object = 4
+        print("\n\n")
+
+
+
+        os.system('cls')
+        print("접근 방식은 무엇입니까?")
+        print("1. 대 사기극")
+        print("2. 비밀 작전")
+        print("3. 공격 전술")
+        print()
+        u2_enter_type = 0
+        u2_enter_type = only_number(u2_enter_type, "접근 방식")
+        
+        check_difficult()
+        print("접근 방식은 ",end="")
+        if u2_enter_type == 1 :
+            print("대 사기극 입니다.")
+            grand_cheet()
+        elif u2_enter_type == 2 :
+            print("비밀 작전 입니다.")
+            quietly()
+        elif u2_enter_type == 3 :
+            print("공격 전술 입니다.")
+            just_attack()
+        how_much_your_share()
+        '''
+        n1_object = 0 #하드난이도인지 아닌지 맞으면 1, 아니면 0.
+        n2_object = 0 #목표물이 뭔지
+        dis_gunner = 0 #총잡이 지분 %
+        dis_driver = 0 #운전사 지분 %
+        dis_hack = 0 #해커 지분 %
+        add_cost = 0 #보조작업 구매로 인해 붙는 추가금액
+        user_share = 0 #플레이어의 지분 %
+        result = 0 #플레이어의 실제 수익 결과 ($)
+        object_cost = 0 #목표 그 자체의 수익금
+        '''
+
+
+        '''
+        print("n1_object = ",n1_object)
+        print("n2_object = ",n2_object)
+        print("dis_gunner = ",dis_gunner)
+        print("dis_driver = ",dis_driver)
+        print("dis_hack = ",dis_hack)
+        print("add_cost = ",add_cost)
+        print("user_share = ",user_share)
+        print("result = ",result)
+        print("object_cost = ",object_cost)
+        '''
+        object_cost = object_list[n1_object][str(n2_object)]
+        
+
+
+        '''
+        print("object_cost =",object_cost)
+        print("type(result) =",type(result))
+        print("type(object_cost) =",type(object_cost))
+        print("type(dis_gunner) =",type(dis_gunner))
+        print("type(dis_driver) =",type(dis_driver))
+        print("type(dis_hack) =",type(dis_hack))
+        '''
+
+        object_cost = int(object_cost)
+        result = object_cost
+        result = result - ((object_cost // 100) * dis_gunner)
+        result = result - ((object_cost // 100) * dis_driver)
+        result = result - ((object_cost // 100) * dis_hack)
+        result = result - add_cost
+        result = (result // 100) * user_share
+    elif ans1 == 0 :
+        #수행원
+        print()
+        os.system('cls')
+        print("이번 목표물은 무엇입니까?")
+        print("1.현금")
+        print("2.금")
+        print("3.예술품")
+        print("4.다이아몬드")
+        print()
+        u1_object = 0
+        u1_object = only_number(u1_object,"목표물")
+        if u1_object == 1 :
+            n2_object = 1
+        elif u1_object == 2 :
+            n2_object = 2
+        elif u1_object == 3 :
+            n2_object = 3
+        elif u1_object == 4 :
+            n2_object = 4
+        select_team_for_member()
+        check_difficult()
+        how_much_your_share()
+
+        object_cost = object_list[n1_object][str(n2_object)]
+        object_cost = int(object_cost)
+        result = object_cost
+        result = result - ((object_cost // 100) * dis_gunner)
+        result = result - ((object_cost // 100) * dis_driver)
+        result = result - ((object_cost // 100) * dis_hack)
+        result = (result // 100) * user_share
+
     
-    check_difficult()
-    print("접근 방식은 ",end="")
-    if u2_enter_type == 1 :
-        print("대 사기극 입니다.")
-        grand_cheet()
-    elif u2_enter_type == 2 :
-        print("비밀 작전 입니다.")
-        quietly()
-    elif u2_enter_type == 3 :
-        print("공격 전술 입니다.")
-        just_attack()
-    how_much_your_share()
-    '''
-    n1_object = 0 #하드난이도인지 아닌지 맞으면 1, 아니면 0.
-    n2_object = 0 #목표물이 뭔지
-    dis_gunner = 0 #총잡이 지분 %
-    dis_driver = 0 #운전사 지분 %
-    dis_hack = 0 #해커 지분 %
-    add_cost = 0 #보조작업 구매로 인해 붙는 추가금액
-    user_share = 0 #플레이어의 지분 %
-    result = 0 #플레이어의 실제 수익 결과 ($)
-    object_cost = 0 #목표 그 자체의 수익금
-    '''
-
-
-    '''
-    print("n1_object = ",n1_object)
-    print("n2_object = ",n2_object)
-    print("dis_gunner = ",dis_gunner)
-    print("dis_driver = ",dis_driver)
-    print("dis_hack = ",dis_hack)
-    print("add_cost = ",add_cost)
-    print("user_share = ",user_share)
-    print("result = ",result)
-    print("object_cost = ",object_cost)
-    '''
-    object_cost = object_list[n1_object][str(n2_object)]
-    
-
-
-    '''
-    print("object_cost =",object_cost)
-    print("type(result) =",type(result))
-    print("type(object_cost) =",type(object_cost))
-    print("type(dis_gunner) =",type(dis_gunner))
-    print("type(dis_driver) =",type(dis_driver))
-    print("type(dis_hack) =",type(dis_hack))
-    '''
-
-    object_cost = int(object_cost)
-    result = object_cost
-    result = result - ((object_cost // 100) * dis_gunner)
-    result = result - ((object_cost // 100) * dis_driver)
-    result = result - ((object_cost // 100) * dis_hack)
-    result = result - add_cost
-    result = (result // 100) * user_share
-
-
-
-    print("\n당신의 실제 수익은 {} 달러입니다!\n".format(result))
+    print("\n당신의 실제 수익은 약[[[  {}  ]]]달러입니다!\n".format(result))
     os.system('pause')
     
 

@@ -34,7 +34,7 @@ def only_number(n,s) :
     return n
 
 def check_difficult() :
-    in1 = input("난이도는 어려움(하드, 해골)난이도 인가요? (1/0)\n>>")
+    in1 = input("난이도는 어려움(하드)난이도 인가요? (1/0)\n>>")
     global n1_object
     if in1 == "1" or in1 == "네" or in1 == "예" or in1 == "ㅖ" or in1 == "P" or in1 == "p" or in1 == "응" or in1 == "어" or in1 == "맞아" or in1 == "yes" or in1 == "YES" or in1 == "y" or in1 == "yeah" or in1 == "ㅇ" or in1 == "Y" :
         print("난이도는 어려움입니다.")
@@ -73,9 +73,7 @@ def select_team_gunner(in_gun) :
     elif in_gun == 2 :
         dis_gunner = 7
     elif in_gun == 3 :
-        dis_gunner = 8
-    elif in_gun == 4 :
-        dis_gunner = 9 
+        print()
     elif in_gun == 5 :
         dis_gunner = 10
     

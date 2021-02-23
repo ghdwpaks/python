@@ -1,0 +1,15 @@
+name = input('당신의 이름은 무엇입니까? ')
+kor = int(input('{}님의 국어 점수 : '.format(name)))
+eng = int(input('{}님의 영어 점수 : '.format(name)))
+math = int(input('{}님의 수학 점수 : '.format(name)))
+sum_data = kor + eng + math
+
+print('='*15)
+print('이름 : {}'.format(name))
+print('='*15)
+print('국어 : {}'.format(kor))
+print('영어 : {}'.format(eng))
+print('수학 : {}'.format(math))
+print('='*15)
+print('합계 : {}'.format(sum_data))
+print('='*15)

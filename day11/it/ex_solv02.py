@@ -19,8 +19,19 @@ while True :
 print("경과한 날짜 :",dc)
 print("최중 쥐 수:",rat)
     
+'''선생님 답안'''
 
-
+rice = 102 * 1000
+mouse = 2
+day = 0
+while True :
+    day += 1
+    rice = rice - (mouse * 20)
+    if day % 10 == 0 :
+        mouse *= 2
+    if rice <= 0 :
+        break
+print("{}일 {}마리 {}g".format(day,mouse,rice))
 
 
 

@@ -6,7 +6,6 @@
 '''
 print("1~101까지의 완전수는 ",end="")
 for i in range(1, 101) :
-
     mea = [] #약수 리스트
     for j in range(1,i) :
         if i % j == 0 :
@@ -16,5 +15,20 @@ for i in range(1, 101) :
         print(i,end="")
 print("가 있습니다!")
 
-        
+'''선생님 답안'''
+
+print()
+print("완전수 : ",end="")
+total = 0
+for i in range(1,30) :
+    for j in range(1,i) :
+        if i % j == 0 :
+            total += j
+    if i == total :
+        print("{}, ".format(i),end="")
+    total = 0
+
+
+
+
 

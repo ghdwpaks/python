@@ -15,6 +15,14 @@ for i in range(2,lim) :
 print("lis :",lis)
     
 
+'''선생님 답안'''
 
-
-
+data = int(input("입력 : "))
+count = 0
+for i in range(2 , data+1) :
+    for j in range(2 , i+1) :
+        if i % j == 0 :
+            count += 1
+        if count == 1 :
+            print("{} ".format(i))
+        count = 0

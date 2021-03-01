@@ -54,6 +54,7 @@ while SB == 0 :
         if event.type == pygame.QUIT: 
             SB = 1
         print("event :",event)
+        print("event.type :",event.type)
     
     #4-3.입력, 시간에 따른 변화
     k += 1

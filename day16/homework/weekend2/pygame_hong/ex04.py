@@ -1,5 +1,4 @@
 import pygame
-import random
 #1. 게임 초기화
 pygame.init()
 
@@ -44,7 +43,6 @@ ss.move = 10 #우주선이 움직이는 속도
 #ss_y = size[1] - ss_sy - 5#ss의 y 좌표(픽셀)위치
 m_list = []
 d_list = []
-t_list = []
 black = (0,0,0)
 white = (255,255,255)
 k = 0
@@ -56,7 +54,7 @@ SB = 0
 
 while SB == 0 :
     #4-1.FPS설정
-    clock.tick(60)
+    clock.tick(16)
     
     #4-2.각종 입력 감지
     for event in pygame.event.get() :
@@ -73,7 +71,6 @@ while SB == 0 :
                 right_go = True
             elif event.key == pygame.K_SPACE :
                 space_go = True
-                k = 0
         if event.type == pygame.KEYUP :
             if event.key == pygame.K_LEFT :
                 left_go = False
@@ -82,6 +79,7 @@ while SB == 0 :
             elif event.key == pygame.K_SPACE :
                 space_go = False
     #4-3.입력, 시간에 따른 변화
+    k += 1
     
     if left_go:
         ss.x -= ss.move
@@ -91,7 +89,7 @@ while SB == 0 :
         ss.x += ss.move
         if ss.x >= size[0] - ss.sx :
             ss.x = size[0] - ss.sx
-    if space_go == True and (k % 6 == 0 or k > 6):
+    if space_go:
         '''
         이게 미사일이 여러개여서. 여기있는 곳에서 Space 입력 받음에 따라
         미사일들을 배열에 담아주는곳입니다.
@@ -99,19 +97,37 @@ while SB == 0 :
         '''
         mm = obj()
         mm.put_img("C:\workspace\py\day16\homework\weekend2\pygame\mm.png")
-        mm.change_size(15,15)
+        mm.change_size(25,25)
         #mm.x = ss.x//2 - mm.size[0]//2
         mm.x = ss.x + ss.sx//2 - mm.sx//2
         mm.y = ss.y - mm.sy - 10
-        mm.move = 15 #총알이 움직이는 속도
+        mm.move = 3 #총알이 움직이는 속도
         m_list.append(mm)
-    k += 1
+    '''
+    실행해보면 이게 총알 객체가 하나밖에 안나오게 된다.
+    스페이스를 눌러 총알을 발사하고 얼마 안돼 다시 발사하게 되면
+    원래 발사됐던 총알은 멈추고 다른 총알이 전진하게 된다.
+    '''
     for i in range(len(m_list)) :
         m = m_list[i]
-        m.y -= m.move
-        if m.y <= -m.sy :
+        mm.y -= mm.move
+        if mm.y <= -mm.sy :
             d_list.append(i)
-    
+    '''
+    이유는 이 위에 있는 구문들 때문인데,
+    getter setter 비스무리한거 해서
+    m_list에 넣어줬더니만
+    m_list에 있는걸 쓰는게 아니라
+    그 앞에서 만들던걸 뺏어오는거다.
+
+    그런데도 총알이 멈춰서 남아있는 이유는
+    1.  이 위에 있는 for문으로 위치를 업데이트 시켜서 전진하는것처럼 보이게 해야하는데
+        for문에서는 m_list안에 있는 값들 말고 mm 값을 건드리기 때문에 더이상 for 문의 관할을
+        벗어나게 돼버린다. 그래서 위치 업데이트가 안돼서 멈춰있었던것.
+    2.  m_list는 생성하고, 전진하는듯이 위치를 업데이트 시켜주는 역할이다. 만들어주는것까지
+        했으니 나중에 사라지든 말든 m_list입장에서는 알바가 아니기 때문에 총알이 
+        남아있었던것이다.
+    '''
     
     
     #4-4.그리기
@@ -119,7 +135,6 @@ while SB == 0 :
     ss.show()
     for m in m_list :
         m.show()
-    
     
     #4-5.업데이트
     pygame.display.flip()

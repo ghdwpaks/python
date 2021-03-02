@@ -4,6 +4,12 @@ arrs = []
 print(dict_)
 exit_m = 0
 i = 0
+if i == 0 :
+    print()
+list_a = []
+list_a.append(10)
+
+
 while(True) :
     while(True) :
         in1 = input("오늘 구매한 물건의 값은 얼마인가요?\n>>")

@@ -1,5 +1,6 @@
 import pygame
 import random
+
 #1. 게임 초기화
 pygame.init()
 
@@ -17,54 +18,46 @@ class obj :
     def __init__(self) :
         self.x = 0
         self.y = 0
+        self.move = 0
+        
     def put_img(self, address) :
         if address[-3:] == 'png' :
             self.img = pygame.image.load(address).convert_alpha()#이미지
         else :
             self.img = pygame.image.load(address)
             self.sx, self.sy = self.img.get_size()
+    
     def change_size(self,sx,sy) :
         self.img = pygame.transform.scale(self.img,(sx,sy))
         self.sx, self.sy = self.img.get_size()
     def show(self) :
         screen.blit(self.img,(self.x,self.y))
 ss = obj()
-#b = obj
-ss.put_img("C:\workspace\py\day16\homework\weekend2\pygame\ss.png")
-#b.put_img("C:\workspace\py\day16\homework\weekend2\pygame\b.png")
+ss.put_img("../pygame/ss.png")
 ss.change_size(50,50)
 ss.x = (size[0] // 2) - (ss.sx // 2)
 ss.y = size[1] - ss.sy - 15
-ss.move = 10 #우주선이 움직이는 속도
+ss.move = 10
 
-#ss = pygame.image.load("C:\workspace\py\day16\homework\weekend2\pygame\ss.png").convert_alpha()#이미지
-#ss = pygame.transform.scale(ss,(50,50))
-#ss_sx , ss_sy = ss.get_size()#ss의 가로, 세로 크기
-#ss_x = (size[0] // 2) - (ss_sx // 2)#ss의 x좌표(픽셀)위치
-#ss_y = size[1] - ss_sy - 5#ss의 y 좌표(픽셀)위치
-m_list = []
-d_list = []
-t_list = []
-black = (0,0,0)
-white = (255,255,255)
-k = 0
 left_go = False
 right_go = False
 space_go = False
+
+black = (0,0,0)
+white = (255,255,255)
+k = 0
+
+m_list = []
+a_list = []
+
 #4.메인 이벤트
 SB = 0
-
 while SB == 0 :
     #4-1.FPS설정
     clock.tick(60)
     
     #4-2.각종 입력 감지
     for event in pygame.event.get() :
-        if event.type == pygame.QUIT: 
-            SB = 1
-        #print("event :",event)
-        #print("event.type :",event.type) 
-        #print("pygame.keydown :",pygame.KEYDOWN)
         if  event.type == pygame.KEYDOWN :
             if event.key == pygame.K_LEFT :
                 left_go = True
@@ -81,45 +74,76 @@ while SB == 0 :
                 right_go = False
             elif event.key == pygame.K_SPACE :
                 space_go = False
-    #4-3.입력, 시간에 따른 변화
     
-    if left_go:
+    #4-3.입력, 시간에 따른 변화
+    if left_go == True :
         ss.x -= ss.move
         if ss.x <= 0 :
             ss.x = 0
-    elif right_go:
+    elif right_go == True :
         ss.x += ss.move
         if ss.x >= size[0] - ss.sx :
-            ss.x = size[0] - ss.sx
-    if space_go == True and (k % 6 == 0 or k > 6):
-        '''
-        이게 미사일이 여러개여서. 여기있는 곳에서 Space 입력 받음에 따라
-        미사일들을 배열에 담아주는곳입니다.
-        JSP의 getter setter같은거임
-        '''
+            ss.x = size[0] - ss.sx 
+    
+    if space_go == True and k % 6 == 0 :
         mm = obj()
-        mm.put_img("C:\workspace\py\day16\homework\weekend2\pygame\mm.png")
-        mm.change_size(15,15)
+        mm.put_img("../pygame/mm.png")
+        mm.change_size(25,25)
         #mm.x = ss.x//2 - mm.size[0]//2
         mm.x = ss.x + ss.sx//2 - mm.sx//2
         mm.y = ss.y - mm.sy - 10
         mm.move = 15 #총알이 움직이는 속도
         m_list.append(mm)
     k += 1
+    dm_list = []
+    da_list = []
+
     for i in range(len(m_list)) :
         m = m_list[i]
         m.y -= m.move
-        if m.y <= -m.sy :
-            d_list.append(i)
+        if m.y <= -m.sy:
+            dm_list.append(i)
+    for d in dm_list :
+        del m_list[d]            
     
+    if random.random() > 0.98 :
+        aa = obj()
+        aa.put_img("../pygame/tg.png")
+        aa.change_size(40,40)
+        #mm.x = ss.x//2 - mm.size[0]//2
+        aa.x = random.randrange(0,size[0]-aa.sx-ss.sx//2)
+        aa.y = 10
+        aa.move = 2 #총알이 움직이는 속도
+        a_list.append(aa)
+        
+    for i in range(len(a_list)) :
+        a = a_list[i]
+        a.y += a.move
+        if a.y >= size[1]:
+            da_list.append(i)
+            
+    try :
+        da_list.reverse()
+        for d in da_list:
+            del a_list[d]
+    except:
+        pass
     
-    
+    try :
+        dm_list.reverse()
+        for d in dm_list:
+            del m_list[d]
+    except:
+        pass
+
     #4-4.그리기
     screen.fill(white)
     ss.show()
     for m in m_list :
         m.show()
-    
+    for a in a_list :
+
+        a.show()
     
     #4-5.업데이트
     pygame.display.flip()

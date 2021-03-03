@@ -44,6 +44,7 @@ while True :
             print("k :",k)
             print("v :",v)
             print("v.items() : ",v.items())
+            print("v.items([0]) : ",v.items([0]))
             for n,t,a in v :
                 print("이름 :",n)
                 print("전화번호 :",t)

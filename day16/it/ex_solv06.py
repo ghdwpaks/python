@@ -16,6 +16,7 @@ while True :
                 menu_cost = input("메뉴 가격 :")
             else :
                 print("이미 등록된 메뉴입니다.")
+                continue
             break
 
         menu[menu_name] = menu_cost

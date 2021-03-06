@@ -9,6 +9,7 @@ with open('pistol_table.csv','r') as f :
     for row in reader :
         hg.append(row)
 wp.append(hg)
+print(hg)
 
 ar = []
 with open('ar_table.csv','r') as f :

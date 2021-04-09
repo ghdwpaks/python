@@ -19,3 +19,15 @@ for i in range(len(t)) :
         print(t[i]['3']+"+",end="")
         sum += float(t[i]['3'])
 print("{:.2f}".format(sum))
+print("\n\n\n\n")
+temp = []
+for i in range(len(t)) :
+    
+    if t[i]['3'] == '-' :
+        pass
+    else : 
+        temp.append(float(t[i]['3']))
+print(temp)
+temp.sort(reverse=True)
+#print("\n\n\n\n")
+print(temp[0])

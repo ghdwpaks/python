@@ -20,7 +20,7 @@ def set_rank() :
     print("type target =",type(target))
     for i in range(len(t)) :
         
-        if t[i][str(target)] == '-' :
+        if t[i][str(target)] == '-'or t[i][str(target)] == '*' :
             count_trash += 1
         else : 
             temp.append(float(t[i][str(target)]))
@@ -54,12 +54,14 @@ def get_total() :
     global target
     for i in range(len(t)) :
         
-        if t[i][str(target)] == '-' :
+        if t[i][str(target)] == '-' or t[i][str(target)] == '*' :
             pass
         else : 
-            print(t[i][str(target)]+"+",end="")
-            sum += float(t[i][target])
+            #print(t[i][str(target)]+"+",end="")
+            sum += float(t[i][str(target)])
     print("{:.2f}".format(sum))
+    print("{}의 총합은{:.1f}{}입니다.".format(subject1,sum,subject2))
+    return sum
 def show_rank() :
     global target,temp,lent,count_trash
     Rotating_target = 0
@@ -70,7 +72,7 @@ def show_rank() :
     while pas :
         for i in range(len(t)) :
             #print(t[i][str(target)])
-            if t[i][str(target)] == '-' :
+            if t[i][str(target)] == '-' or t[i][str(target)] == '*' :
                 pass
             else : 
                 
@@ -81,9 +83,11 @@ def show_rank() :
                         pas = False
                         break
 #print(t)
-target = 9
+target = 5
 set_rank()
 #print(temp)
-show_rank()
+#show_rank()
+res1 = get_total()
+
 
 

@@ -62,7 +62,7 @@ def get_total() :
     print("{:.2f}".format(sum))
 def show_rank() :
     global target,temp,lent,count_trash
-    Rotating_target = 1
+    Rotating_target = 0
     print("2target =",Rotating_target)
     print("type target =",type(Rotating_target))
     

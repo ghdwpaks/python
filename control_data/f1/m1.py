@@ -61,7 +61,8 @@ def get_total() :
             sum += float(t[i][str(target)])
     print("{:.2f}".format(sum))
     print("{}의 총합은{:.1f}{}입니다.".format(subject1,sum,subject2))
-    os.system("pause")
+    #os.system("pause")
+    print("\n\n\n")
     return sum
 def show_rank() :
     global target,temp,lent,count_trash
@@ -83,7 +84,31 @@ def show_rank() :
                     if Rotating_target >= lent :
                         pas = False
                         break
-    os.system("pause")
+    #os.system("pause")
+    print("\n\n\n")
+
+def show_seach() :
+    global target,temp,lent,count_trash
+    Rotating_target = 0
+    keyword = input("도시 이름 입력 : ")
+    print("2target =",Rotating_target)
+    print("type target =",type(Rotating_target))
+    
+    pas = True
+    while pas :
+        for i in range(len(t)) :
+            #print(t[i][str(target)])
+            if t[i][str(target)] == '-' or t[i][str(target)] == '*' :
+                pass
+            else : 
+                
+                if t[i]['1'] == keyword :
+                    print("{}는 {}부분에서 {}위로 값은 {}{}입니다.".format(keyword,subject1,i+1,t[i][str(target)],subject2))
+                    pas = False
+                    break
+    #os.system("pause")
+    print("\n\n\n")
+
 
 def choose_func(subject_main) :
     global target
@@ -91,13 +116,15 @@ def choose_func(subject_main) :
     target = subject_main
     set_rank()
     while p2 :
-        os.system("cls")
+        #os.system("cls")
+        print("\n\n\n")
         print("0.뒤로가기")
         print("1.순위별로 출력")
+        print("2.특정도시순위검색")
         if subject_main == 7 or subject_main == 8 or subject_main == 9 or subject_main == 10 or subject_main == 11 :
             pass
         else :
-            print("2.총합 출력")
+            print("3.총합 출력")
         u2 = input("종류선택 : ")
         if "exit" == u2 or "종료" == u2 or '0' == u2 or "EXIT" in u2:
             p2 = False
@@ -106,6 +133,8 @@ def choose_func(subject_main) :
         elif int(u2) == 1 :
             show_rank()
         elif int(u2) == 2 :
+            show_seach()
+        elif int(u2) == 3 :
             get_total()
         else :
             continue
@@ -121,7 +150,8 @@ print("Hello world!")
 print("")
 p = True
 while p :
-    os.system("cls")
+    #os.system("cls")
+    print("\n\n\n")
     print("1.15세이상인구")
     print("2.경제활동인구")
     print("3.취업자")

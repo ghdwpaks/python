@@ -64,8 +64,8 @@ def get_total() :
             sum += float(t[i][str(target)])
     print("{:.2f}".format(sum))
     print("{}의 총합은{:.1f}{}입니다.".format(subject1,sum,subject2))
-    #os.system("pause")
-    print("\n\n\n")
+    os.system("pause")
+    #print("\n\n\n")
     return sum
 def show_rank() :
     global target,temp,lent,count_trash
@@ -89,8 +89,8 @@ def show_rank() :
                     if Rotating_target >= lent :
                         pas = False
                         break
-    #os.system("pause")
-    print("\n\n\n")
+    os.system("pause")
+    #print("\n\n\n")
 
 def show_seach() :
     global target,temp,lent,count_trash
@@ -106,8 +106,8 @@ def show_seach() :
                     print("{}는 {}부분에서 {}위로 값은 {}{}입니다.".format(keyword,subject1,temp.index(float(t[i][str(target)]))+1,t[i][str(target)],subject2))
                     pas = False
                     break
-    #os.system("pause")
-    print("\n\n\n")
+    os.system("pause")
+    #print("\n\n\n")
 
 
 def choose_func(subject_main) :
@@ -116,8 +116,8 @@ def choose_func(subject_main) :
     target = subject_main
     set_rank()
     while p2 :
-        #os.system("cls")
-        print("\n\n\n")
+        os.system("cls")
+        #print("\n\n\n")
         print("0.뒤로가기")
         print("1.순위별로 출력")
         print("2.특정도시순위검색")
@@ -150,8 +150,8 @@ print("Hello world!")
 print("")
 p = True
 while p :
-    #os.system("cls")
-    print("\n\n\n")
+    os.system("cls")
+    #print("\n\n\n")
     print("1.15세이상인구")
     print("2.경제활동인구")
     print("3.취업자")

@@ -63,7 +63,7 @@ def get_total() :
             #print(t[i][str(target)]+"+",end="")
             sum += float(t[i][str(target)])
     print("{:.2f}".format(sum))
-    print("{}의 총합은{:.1f}{}입니다.".format(subject1,sum,subject2))
+    print("{}의 총합은{:.1f}{}이고".format(subject1,sum,subject2))
     os.system("pause")
     #print("\n\n\n")
     return sum
@@ -131,13 +131,22 @@ def choose_func(subject_main) :
         elif u2 == '' :
             continue
         elif int(u2) == 1 :
-            show_rank()
+            get_avg()
         elif int(u2) == 2 :
             show_seach()
         elif int(u2) == 3 :
             get_total()
         else :
             continue
+def get_avg() :
+    global target,temp,lent
+    total = get_total()
+    avg = total / lent
+    print("{}의 평균은 {}{}입니다.".format(subject1,avg,subject2))
+    os.system("pause")
+    
+    #print("\n\n\n")
+    return avg
 '''
 #print(t)
 target = 5

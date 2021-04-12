@@ -51,7 +51,15 @@ def set_rank() :
         subject1 = "실업률";subject2 = "％"
     elif target == 12:
         subject1 = "실업률";subject2 = "C.V."
-
+def get_avg() :
+    global target,temp,lent
+    total = get_total()
+    avg = total / lent
+    print("{}의 평균은 {:.1f}{}입니다.".format(subject1,avg,subject2))
+    os.system("pause")
+    
+    #print("\n\n\n")
+    return avg
 def get_total() :
     sum = 0.0
     global target
@@ -63,8 +71,8 @@ def get_total() :
             #print(t[i][str(target)]+"+",end="")
             sum += float(t[i][str(target)])
     print("{:.2f}".format(sum))
-    print("{}의 총합은{:.1f}{}이고".format(subject1,sum,subject2))
-    os.system("pause")
+    print("{}의 총합은 {:.1f}{}이고".format(subject1,sum,subject2))
+    
     #print("\n\n\n")
     return sum
 def show_rank() :
@@ -131,22 +139,14 @@ def choose_func(subject_main) :
         elif u2 == '' :
             continue
         elif int(u2) == 1 :
-            get_avg()
+            show_rank()
         elif int(u2) == 2 :
             show_seach()
         elif int(u2) == 3 :
-            get_total()
+            get_avg()
         else :
             continue
-def get_avg() :
-    global target,temp,lent
-    total = get_total()
-    avg = total / lent
-    print("{}의 평균은 {}{}입니다.".format(subject1,avg,subject2))
-    os.system("pause")
-    
-    #print("\n\n\n")
-    return avg
+
 '''
 #print(t)
 target = 5

@@ -76,3 +76,37 @@ def choose_func() :
     setting_city()
     setting_sex()
     show_ops()
+
+
+p = True
+while p :
+    #os.system("cls")
+    #print("\n\n\n")
+    print("1.서울특별시")
+    print("2.부산광역시")
+    print("3.대구광역시")
+    print("4.인천광역시")
+    print("5.광주광역시")
+    print("6.대전광역시")
+    print("7.울산광역시")
+    print("8.세종특별자치시")
+    print("9.경기도")
+    print("10.강원도")
+    print("11.충청북도")
+    print("12.충청남도")
+    print("13.전라북도")
+    print("14.전라남도")
+    print("15.경상북도")
+    print("16.경상남도")
+    print("17.제주특별자치도")
+    print("18.전역")
+    print()
+    print("0.EXIT 종료")
+    u = input("종류선택 : ")
+    if "exit" == u or "종료" == u or '0' == u or "EXIT" in u:
+        p = False
+    elif int(u) < 18 and int(u) > 0 :
+        target = int(u)
+        choose_func()
+    else :
+        continue

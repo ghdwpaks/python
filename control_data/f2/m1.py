@@ -71,3 +71,8 @@ def show_ops() :
     for i in range(len(t)) :
         if t[i]['1'] == city_name and t[i]['2'] == sex:
             print("Y")
+
+def choose_func() :
+    setting_city()
+    setting_sex()
+    show_ops()

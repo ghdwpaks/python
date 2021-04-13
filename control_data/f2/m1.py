@@ -15,6 +15,7 @@ sex = '' #성별
 def setting_city() :
     global city_name,target
     print("enter1")
+    
     if target == 1:
         city_name = "서울특별시"
     elif target == 2:
@@ -51,6 +52,7 @@ def setting_city() :
         city_name = "제주특별자치도"
     elif target == 18:
         city_name = "전역"
+    print("city name =",city_name)
 
 def setting_sex() :
     global sex
@@ -61,12 +63,16 @@ def setting_sex() :
         u3 = input("종류선택 : ")
         if u3 == '1' :
             sex = "계"
+            break
         elif u3 == '2' :
             sex = '남자'
+            break
         elif u3 == '3' :
             sex == '여자'
+            break
         else :
             continue
+    print("sex =",sex)
 def show_ops() :
     for i in range(len(t)) :
         if t[i]['1'] == city_name and t[i]['2'] == sex:

@@ -8,13 +8,14 @@ with open('table1.csv','r') as f :
         t.append(row)
         print(row)
 print("Hello world!")
-print(t)
+#print(t)
 target = 0 #도시 타겟 지정
 city = "" #도시이름
 sex = '' #성별
 def setting_city() :
     global city_name,target
-    print("enter1")
+    #print("enter1")
+    print("\n\n\n")
     
     if target == 1:
         city_name = "서울특별시"
@@ -52,9 +53,11 @@ def setting_city() :
         city_name = "제주특별자치도"
     elif target == 18:
         city_name = "전역"
-    print("city name =",city_name)
+    #print("city name =",city_name)
+
 
 def setting_sex() :
+    print("\n\n\n")
     global sex
     while True :
         print("1.모두")
@@ -72,12 +75,22 @@ def setting_sex() :
             break
         else :
             continue
-    print("sex =",sex)
+    #print("sex =",sex)
 def show_ops() :
+    print("\n\n\n")
     for i in range(len(t)) :
         if t[i]['1'] == city_name and t[i]['2'] == sex:
-            print("Y")
-
+            #print("결과물 : ",t[i])
+            print("행정구역 :",t[i]['1'])
+            print("성별 :",t[i]['2'])
+            print("15세 이상인구(천명):",t[i]['3'])
+            print("경제활동인구(천명):",t[i]['4'])
+            print("취업자(천명):",t[i]['5'])
+            print("실업자(천명):",t[i]['6'])
+            print("비경제활동인구(천명):",t[i]['7'])
+            print("경제활동참가율(%):",t[i]['8'])
+            print("고용률(%):",t[i]['9'])
+            print("실업률(%):",t[i]['10'])
 def choose_func() :
     setting_city()
     setting_sex()
@@ -87,7 +100,7 @@ def choose_func() :
 p = True
 while p :
     #os.system("cls")
-    #print("\n\n\n")
+    print("\n\n\n")
     print("1.서울특별시")
     print("2.부산광역시")
     print("3.대구광역시")

@@ -67,3 +67,7 @@ def setting_sex() :
             sex == '여자'
         else :
             continue
+def show_ops() :
+    for i in range(len(t)) :
+        if t[i]['1'] == city_name and t[i]['2'] == sex:
+            print("Y")

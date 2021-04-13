@@ -51,3 +51,19 @@ def setting_city() :
         city_name = "제주특별자치도"
     elif target == 18:
         city_name = "전역"
+
+def setting_sex() :
+    global sex
+    while True :
+        print("1.모두")
+        print("2.남자")
+        print("3.여자")
+        u3 = input("종류선택 : ")
+        if u3 == '1' :
+            sex = "계"
+        elif u3 == '2' :
+            sex = '남자'
+        elif u3 == '3' :
+            sex == '여자'
+        else :
+            continue

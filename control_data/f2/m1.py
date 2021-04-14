@@ -16,6 +16,7 @@ targetc = 0 #도시 타겟 지정
 city = "" #도시이름
 sexc = '' #성별
 subject = 0 #순위별 출력 시 사용하는 주제
+subject_s = ""#순위별 출력 시 사용하는 주제, 보이기용이자 문자열
 def setting_rank() :
     for j in range(3,11) :
         temp1 = []
@@ -86,10 +87,71 @@ def setting_rank() :
         print(rt[i])
     #print(rt)
 def show_rank() :
-    pass
+    print(subject_s)
+    for i in range(len(rt[0])) :
+        print(i+1,".",pcn(rt[subject][i][1]),":",rt[subject][i][0])
+        #print("{}. {} : {}",format(i,rt[subject][i][1],rt[subject][i][0]))
 
-def choose_and_setting_subject() :
-    global subject
+def pcn(name) :#print city name
+    name = int(name)
+    if name == 1 :
+        name = "서울특별시\t" 
+    elif name == 2:
+        name = "부산광역시\t"
+    elif name == 3:
+        name = "대구광역시\t"
+    elif name == 4:
+        name = "인천광역시\t"
+    elif name == 5:
+        name = "광주광역시\t"
+    elif name == 6:
+        name = "대전광역시\t"
+    elif name == 7:
+        name = "울산광역시\t"
+    elif name == 8:
+        name = "세종특별자치시"
+    elif name == 9:
+        name = "경기도\t"
+    elif name == 10:
+        name = "강원도\t"
+    elif name == 11:
+        name = "충청북도\t"
+    elif name == 12:
+        name = "충청남도\t"
+    elif name == 13:
+        name = "전라북도\t"
+    elif name == 14:
+        name = "전라남도\t"
+    elif name == 15:
+        name = "경상북도\t"
+    elif name == 16:
+        name = "경상남도\t"
+    elif name == 17:
+        name = "제주특별자치도"
+    return name
+
+def setting_subject(sub) :
+    global subject, subject_s
+    subject = int(sub)
+    if sub == '1' :
+        subject_s = "15세 이상 인구(천명)"
+    elif sub == '2' :
+        subject_s = "경제 활동 인구(천명)"
+    elif sub == '3' :
+        subject_s = "취업자(천명)"
+    elif sub == '4' :
+        subject_s = "실업자(천명)"
+    elif sub == '5' :
+        subject_s = "비경제활동인구(천명)"
+    elif sub == '6' :
+        subject_s = "경제활동참가율(%"
+    elif sub == '7' :
+        subject_s = "고용률(%)"
+    elif sub == '8' :
+        subject_s = "실업률(%)"
+        
+    
+def choose_subject() :
     p = True
     while p :
         print("\n\n\n")
@@ -107,7 +169,8 @@ def choose_and_setting_subject() :
         if "exit" == u2 or "종료" == u2 or '0' == u2 or "EXIT" in u2:
             p = False
         elif int(u2) < 9 and int(u2) > 0 :
-            subject = int(u2+2)
+            setting_subject(u2)
+
             p = False
         else :
             continue
@@ -237,7 +300,7 @@ def choose_func(input1) :
         show_ops()
     elif input1 == '2' :
         setting_rank()
-        setting_subject()
+        choose_subject()
         show_rank()
 
 

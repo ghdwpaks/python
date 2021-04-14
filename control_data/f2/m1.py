@@ -26,15 +26,15 @@ def setting_rank() :
         temp1.sort(reverse=True)
         print("p1")
         print(temp1)
-        temp2 = [[4]]*len(temp1)
+        temp2 = []
         print(temp2)
+        
+        for i in range(0,len(temp1)) :
+            temp3 = [0]
+            temp2.append(temp3)
 
-        for i in range(len(temp1)) :
-            print(temp2[i])
-            print(type(temp2[i]))
-            print(temp2[i].append(3+i))
-
-
+        for i in range(0,len(temp1)) :
+            temp2[i][0] = c.deepcopy(temp1[i])
         print(temp2)
         print("p2")
         print("###########")
@@ -79,8 +79,8 @@ def setting_rank() :
                             temp5 = 16
                         elif city_name_t == "제주특별자치도" :
                             temp5 = 17
-                        temp2.append(temp5)
-        #print(temp2)
+                        temp2[e].append(temp5)
+        print(temp2)
         
     
 def setting_city() :

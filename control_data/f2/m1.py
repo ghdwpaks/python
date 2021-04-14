@@ -15,6 +15,7 @@ print("Hello world!")
 targetc = 0 #도시 타겟 지정
 city = "" #도시이름
 sexc = '' #성별
+subject = 0 #순위별 출력 시 사용하는 주제
 def setting_rank() :
     for j in range(3,11) :
         temp1 = []
@@ -84,6 +85,32 @@ def setting_rank() :
     for i in range(len(rt)):
         print(rt[i])
     #print(rt)
+def show_rank() :
+    pass
+
+def choose_and_setting_subject() :
+    global subject
+    p = True
+    while p :
+        print("\n\n\n")
+        print("1.15세 이상 인구(천명)")
+        print("2.경제 활동 인구(천명)")
+        print("3.취업자(천명)")
+        print("4.실업자(천명)")
+        print("5.비경제활동인구(천명)")
+        print("6.경제활동참가율(%)")
+        print("7.고용률(%)")
+        print("8.실업률(%)")
+        print()
+        print("0.뒤로가기")
+        u2 = input("종류선택 : ")
+        if "exit" == u2 or "종료" == u2 or '0' == u2 or "EXIT" in u2:
+            p = False
+        elif int(u2) < 9 and int(u2) > 0 :
+            subject = int(u2+2)
+            p = False
+        else :
+            continue
     
 def setting_city() :
     global city_name,targetc
@@ -210,6 +237,8 @@ def choose_func(input1) :
         show_ops()
     elif input1 == '2' :
         setting_rank()
+        setting_subject()
+        show_rank()
 
 
 

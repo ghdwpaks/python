@@ -87,10 +87,12 @@ def setting_rank() :
         print(rt[i])
     #print(rt)
 def show_rank() :
+    os.system('cls')
     print(subject_s)
     for i in range(len(rt[0])) :
         print(i+1,".",pcn(rt[subject][i][1]),":",rt[subject][i][0])
         #print("{}. {} : {}",format(i,rt[subject][i][1],rt[subject][i][0]))
+    os.system('pause')
 
 def pcn(name) :#print city name
     name = int(name)
@@ -154,7 +156,8 @@ def setting_subject(sub) :
 def choose_subject() :
     p = True
     while p :
-        print("\n\n\n")
+        #print("\n\n\n")
+        os.system('cls')
         print("1.15세 이상 인구(천명)")
         print("2.경제 활동 인구(천명)")
         print("3.취업자(천명)")
@@ -178,7 +181,7 @@ def choose_subject() :
 def setting_city() :
     global city_name,targetc
     #print("enter1")
-    print("\n\n\n")
+    #print("\n\n\n")
     
     if targetc == 1:
         city_name = "서울특별시"
@@ -221,7 +224,7 @@ def setting_city() :
 
 
 def setting_sexc() :
-    print("\n\n\n")
+    #print("\n\n\n")
     global sexc
     while True :
         print("1.모두")
@@ -242,7 +245,7 @@ def setting_sexc() :
     #print("sexc =",sexc)
 def show_ops() :
     global city_name,sexc
-    print("\n\n\n")
+    #print("\n\n\n")
     for i in range(len(t)) :
         if t[i]['1'] == city_name and t[i]['2'] == sexc:
             #print("결과물 : ",t[i])
@@ -259,11 +262,12 @@ def show_ops() :
             print("경제활동참가율(%):\t",t[i]['8'])
             print("고용률(%):\t\t",t[i]['9'])
             print("실업률(%):\t\t",t[i]['10'])
+    os.system('pause')
 def choose_city() :
     global targetc
     p = True
     while p :
-        print("\n\n\n")
+        #print("\n\n\n")
         print("1.서울특별시")
         print("2.부산광역시")
         print("3.대구광역시")
@@ -307,8 +311,8 @@ def choose_func(input1) :
 
 p = True
 while p :
-    #os.system("cls")
-    print("\n\n\n")
+    os.system("cls")
+    #print("\n\n\n")
     print("1.도시별 데이터 출력")
     print("2.데이터별 도시 순위")
     print()

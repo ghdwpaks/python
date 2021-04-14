@@ -1,17 +1,88 @@
 print("Hello world!")
 import csv
 import os
+import copy as c
 t = []
+rt = [] #도시(성별은 합계로)별 순위 설정
 with open('table1.csv','r') as f :
     reader = csv.DictReader(f)
     for row in reader :
         t.append(row)
         print(row)
+
 print("Hello world!")
 #print(t)
 targetc = 0 #도시 타겟 지정
 city = "" #도시이름
 sexc = '' #성별
+def setting_rank() :
+    for j in range(3,11) :
+        temp1 = []
+        temp3 = [0,0]
+        for i in range(len(t)) :
+            if t[i]['2'] == '계' and t[i]['1'] != '계':
+                temp3 = t[i][str(j)]
+                temp1.append(float(temp3))
+        temp1.sort(reverse=True)
+        print("p1")
+        print(temp1)
+        temp2 = [[4]]*len(temp1)
+        print(temp2)
+
+        for i in range(len(temp1)) :
+            print(temp2[i])
+            print(type(temp2[i]))
+            print(temp2[i].append(3+i))
+
+
+        print(temp2)
+        print("p2")
+        print("###########")
+
+        for i in range(len(t)) :
+            if t[i]['2'] == '계' and t[i]['1'] != '계':
+                for e in range(len(temp1)) :
+                    if t[i][str(j)] == str(temp1[e]) :
+                        city_name_t = t[i]['1']
+                        temp5 = 0
+                        if city_name_t == "서울특별시" :
+                            temp5 = 1
+                        elif city_name_t == "부산광역시" :
+                            temp5 = 2
+                        elif city_name_t == "대구광역시" :
+                            temp5 = 3
+                        elif city_name_t == "인천광역시" :
+                            temp5 = 4
+                        elif city_name_t == "광주광역시" :
+                            temp5 = 5
+                        elif city_name_t == "대전광역시" :
+                            temp5 = 6
+                        elif city_name_t == "울산광역시" :
+                            temp5 = 7
+                        elif city_name_t == "세종특별자치시" :
+                            temp5 = 8
+                        elif city_name_t == "경기도" :
+                            temp5 = 9
+                        elif city_name_t == "강원도" :
+                            temp5 = 10
+                        elif city_name_t == "충청북도" :
+                            temp5 = 11
+                        elif city_name_t == "충청남도" :
+                            temp5 = 12
+                        elif city_name_t == "전라북도" :
+                            temp5 = 13
+                        elif city_name_t == "전라남도" :
+                            temp5 = 14
+                        elif city_name_t == "경상북도" :
+                            temp5 = 15
+                        elif city_name_t == "경상남도" :
+                            temp5 = 16
+                        elif city_name_t == "제주특별자치도" :
+                            temp5 = 17
+                        temp2.append(temp5)
+        #print(temp2)
+        
+    
 def setting_city() :
     global city_name,targetc
     #print("enter1")
@@ -53,6 +124,7 @@ def setting_city() :
         city_name = "제주특별자치도"
     elif targetc == 18:
         city_name = "전역"
+    
     #print("city name =",city_name)
 
 
@@ -135,7 +207,7 @@ def choose_func(input1) :
         setting_sexc()
         show_ops()
     elif input1 == '2' :
-        pass
+        setting_rank()
 
 
 

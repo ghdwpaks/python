@@ -42,7 +42,7 @@ def setting_rank() :
         for i in range(len(t)) :
             if t[i]['2'] == '계' and t[i]['1'] != '계':
                 for e in range(len(temp1)) :
-                    if t[i][str(j)] == str(temp1[e]) :
+                    if float(t[i][str(j)]) == float(temp1[e]) :
                         city_name_t = t[i]['1']
                         temp5 = 0
                         if city_name_t == "서울특별시" :
@@ -80,8 +80,10 @@ def setting_rank() :
                         elif city_name_t == "제주특별자치도" :
                             temp5 = 17
                         temp2[e].append(temp5)
-        print(temp2)
-        
+        rt.append(temp2)
+    for i in range(len(rt)):
+        print(rt[i])
+    #print(rt)
     
 def setting_city() :
     global city_name,targetc

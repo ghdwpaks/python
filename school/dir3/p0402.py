@@ -1,0 +1,6 @@
+print(10e3)
+print(type(10e3))
+print(1.123456E2)
+print(type(1.23456E2))
+print(1.123456e-2)
+print(1.12456e22)

@@ -6,6 +6,7 @@ import copy as c
 
 print("Hello world!")
 country_names = ['그리스','네덜란드','노르웨이','뉴질랜드','덴마크','독일','라트비아','러시아','룩셈부르크','리투아니아','멕시코','미국','벨기에','스웨덴','스위스','스페인','슬로바키아','슬로베니아','아이슬란드','아일랜드','에스토니아','영국','오스트레일리아','오스트리아','이스라엘','이탈리아','일본','체코','칠레','캐나다','콜롬비아','터키','포르투갈','폴란드','프랑스','핀란드','한국','헝가리']
+genders = ["남자",'여자','개인 전체']
 
 temp = [] #temp, 임시 테이블
 country = [] #전체 중 나라 구분
@@ -37,6 +38,12 @@ def check_country_section(country_name) :
             #print("a :",a)
             #print("i :",i)
             return a
+def check_gender_section(gender_name) :
+    global gendgers
+    for i in range(genders) :
+        if str(gender_name) == str(genders[i]) :
+            a = c.deepcopy(i)
+            return a
 
 def setting_table_level_1() :
     #1단계, 테이블 불러오기  
@@ -63,12 +70,35 @@ def setting_table_level_2() :
         
         #temp[i]['성별'],temp[i]['연령별'],temp[i]['고용/인구 비율'],temp[i]['노동참여 비율'],temp[i]['실업률']
 
+def setting_table_level_3() :
+    #3단계, 각 나라 위치에 맞는 곳에 성별 데이터 append 하기
+    global country,gendger
+    for i in range(0,len(country)) :
+        for j in range(0,len(country[i])) :
+            temp_type = ['연령별','고용/인구 비율','노동참여 비율','실업률']
+            temp_for_appending = []
+            for k in range(0,len(temp_type)) :
+                temp_for_appending.append(country[i][j][temp_type[k]])
+            
+            
+
+
 def setting_country_list() :
     global country
     for i in range(len(country_names)) :
         country.append([])
+def setting_gender_list() :
+    global gendger
+    for i in range(len(genders)) :
+        gendger.append([])
 
 
+'''
+def setting_gender_list() :
+    global gendger, gendgers
+    for i in range(len(gendgers)) :
+        gendger.append([])
+'''
             
 
 print("Hello world!")
@@ -76,9 +106,11 @@ a = check_country_section("칠레")
 print(a)
 setting_country_list()
 setting_table_level_1()
-print("len(temp) :",len(temp))
+#print("len(temp) :",len(temp))
 #print("1",temp)
 setting_table_level_2()
+print(len(country))
+'''
 printing = str(country)
 for i in range(0,100) :
     print("\n")
@@ -87,3 +119,4 @@ for i in range(len(printing)) :
     print(printing[i],end='')
     if printing[i] == "]" or printing[i] == "}" :
         print("")
+'''

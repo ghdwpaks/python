@@ -10,6 +10,20 @@ genders = ["남자",'여자','개인 전체']
 
 table = []
 temp = []
+
+def get_real_length_on_CMD(string) :
+    count = 0
+    for i in range(len(string)) :
+        if string[i].encode().isdigit() :
+            count += 1
+        else :
+            if string[i].encode().isalpha():
+                #영어 맞음
+                count += 1
+            else :
+                count += 2 
+    return count
+
 def check_country_section(country_name) :
     #나라 이름 받고서 country_names에 해당하는 위치(상수)를 반환함.
     global country_names
@@ -54,14 +68,33 @@ def show_all_country_names() :
 
 def show_country_ops_country(country_name) :
     global table
+    fir = 1
+    print("국가 : {}".format(country_name))
     for i in range(len(table)) :
+        
         if table[i]['1'] == country_name :
-            print("국가 : {}".format(country_name))
-            print("\t성별 : {}".format(table[i]['2']))
-            print("\t\t연령 : {}".format(table[i]['3']))
-            print("\t\t\t고용인구비율 : {}".format(table[i]['4']))
-            print("\t\t\t노동참여비율 : {}".format(table[i]['5']))
-            print("\t\t\t실업률 : {}".format(table[i]['6']))
+            if fir == 1 :
+                a = table[i]['2']
+                print("성별 : {}".format(table[i]['2']))
+                print("\t나이\t\t\t고용인구비율\t노동참여비율\t실업률")
+                fir = 0
+            if a != table[i]['2'] :
+                a = table[i]['2']
+                print("성별 : {}".format(table[i]['2']))
+                print("\t나이\t\t\t고용인구비율\t노동참여비율\t실업률")
+            a = table[i]['2']
+
+            if get_real_length_on_CMD(table[i]['3']) > 8 :
+                print("\t{0}\t".format(table[i]['3']),end="")
+            else :
+                print("\t{0}\t\t".format(table[i]['3']),end="")
+            print("\t{0:.2f}\t\t{1:.2f}\t\t{2:.2f}".format(float(table[i]['4']),float(table[i]['5']),float(table[i]['6'])))
+            '''
+            print("\t연령 : {}".format(table[i]['3']))
+            print("\t\t고용인구비율 : {}".format(table[i]['4']))
+            print("\t\t노동참여비율 : {}".format(table[i]['5']))
+            print("\t\t실업률 : {}".format(table[i]['6']))
+            '''
 
 def show_country_ops_center() :
     #나라 정보 출력 기능
@@ -70,7 +103,7 @@ def show_country_ops_center() :
     show_all_country_names()
     ans1_country = ""
     while True :
-        ans1_country = input("\t국가입력 : ")
+        ans1_country = input("\n국가입력 : ")
         if ans1_country in country_names :
             break
         else :
@@ -83,7 +116,7 @@ def show_country_ops_center() :
 
 print("Hello world!")
 setting_table_level_1()
-#show_all_country_names()
+show_country_ops_country("러시아")
 while True :
     print("OECD 가입국가의 LFS입니다.")
     print("1.국가의 모든 LFS 정보 출력")

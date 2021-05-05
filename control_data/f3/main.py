@@ -30,11 +30,12 @@ def get_ans_kinds_of_country() :
     while True :
         print("사용가능한 국가는 다음과 같습니다.(고르기 종료 : exit입력)")
         show_all_country_names()
+        print()
         if len(temp_ans)!=0 :
             print("지금까지 고른 국가 :",end=" ")
             for i in range(0,len(temp_ans)) :
                 print("{}".format(temp_ans[i]),end=" ")
-        temp_ans_country_name = input("입력 : ")
+        temp_ans_country_name = input("\n입력 : ")
         if temp_ans_country_name == "종료" or temp_ans_country_name == "exit" :
             if len(temp_ans) < 2 :
                 print("적어도 두개를 고르셔야합니다.")
@@ -189,7 +190,7 @@ def show_Unemployment_Rate(country,gender,age) :
     '''
     이건 각 나라의 성별, 나이에 따라 실업률을 출력할 수 있습니다.
     S(how)U(nemployment)R(ate)에서는 country, gender, age 모두 배열로써 받습니다.
-    
+
     '''
     print("country :",country)
     print("gender :",gender)
@@ -199,8 +200,8 @@ def show_Unemployment_Rate(country,gender,age) :
         #print("i :",i)
         #print("table[i]['1'] == country :",table[i]['1'] == country)
         for e in range(len(country)) :
+            fir_country = 1
             if table[i]['1'] == country[e] :
-                fir_country = 1
                 #print("국가 : {}".format(country[e]))
                 for j in range(len(gender)) :
                     fir_gender = 1
@@ -209,6 +210,7 @@ def show_Unemployment_Rate(country,gender,age) :
                             if table[i]['3'] == age[k] :
                                 if fir_country == 1 :
                                     print("국가 : {}".format(country[e]))
+                                    fir_country = 0
                                 if fir_gender == 1 :
                                     print("성별 : {}".format(gender[j]))
                                     fir_gender = 0

@@ -11,6 +11,44 @@ genders = ["남자",'여자','개인 전체']
 table = []
 temp = []
 
+def get_ans_yes_or_no_or_another() :
+    while True :
+        ans = input("입력 : ")
+        
+        if ans == "dd" or ans == "d" or ans == "y" or ans == "ㅛ" or ans == "1" or ans == "yes" or ans == "YES" or ans == "DD" or ans == "D" or ans == "Y" or ans == '응' or ans == '어' or ans == '네' or ans == '예':
+            return 1
+        elif ans == 's' or ans == 'ss'  or ans == 'SS' or ans == 'S' or ans == 'NO' or ans == 'no' or ans == 'n' or ans == 'N' or ans == '0'  or ans == '아니'  or ans == 'ㄴㄴ' or ans == 'ㄴ' or ans == '아니오' or ans == '아니요':
+            return 0
+        elif ans == "both" or ans == "BOTH" or ans == "둘다" or ans == "총계" or ans == "총합" or ans == "전부" or ans == "2":
+            return 2
+        else :
+            continue
+
+def get_ans_kinds_of_country() :
+    global country_names
+    temp_ans = []
+    while True :
+        print("사용가능한 국가는 다음과 같습니다.(고르기 종료 : exit입력)")
+        show_all_country_names()
+        if len(temp_ans)!=0 :
+            print("지금까지 고른 국가 :",end=" ")
+            for i in range(0,len(temp_ans)) :
+                print("{}".format(temp_ans[i]),end=" ")
+        temp_ans_country_name = input("입력 : ")
+        if temp_ans_country_name == "나가기" or temp_ans_country_name == "exit" :
+            if len(temp_ans) < 2 :
+                print("적어도 두개를 고르셔야합니다.")
+                continue
+            else :
+                break
+        if temp_ans_country_name in country_names :
+            temp_ans.append(temp_ans_country_name)
+        else :
+            continue
+    return temp_ans
+
+
+
 def get_real_length_on_CMD(string) :
     count = 0
     for i in range(len(string)) :
@@ -66,7 +104,7 @@ def show_all_country_names() :
         if len(country_names[-i]) < 4 :
             print("\t",end="")
 
-def show_country_ops_country(country_name) :
+def show_all_country_ops(country_name) :
     global table
     fir = 1
     print("국가 : {}".format(country_name))
@@ -108,18 +146,99 @@ def show_country_ops_center() :
             break
         else :
             print("해당 국가는 포함되지 않았습니다.")
-    show_country_ops_country(ans1_country)
+    show_all_country_ops(ans1_country)
         
+def show_Unemployment_Rate_center() :
+    #나라별 실업률 정보 출력 기능 센터
+    global country_names
+
+
+    kind_of_age = []
+    kind_of_country = []
+    kind_of_gender = []
+    #!여기 부분 종류 고르는 것들 구조화 시켜서 더 다양하게 고를 수 있게 하기
+    print("모든 국가의 실업률 정보를 출력하시겠습니까? (Y/N)")
+    ans1_ur_c = get_ans_yes_or_no_or_another()
+    if ans1_ur_c == 1 :
+        kind_of_country = c.deepcopy(country_names)
+    else :
+        kind_of_country = get_ans_kinds_of_country()
+
+
+    print("모든 나이의 실업률 정보를 출력하시겠습니까? 아니면\n실업률 총계만 출력하시겠습니까?\n모든 나이 = Y / 총계만 = N")
+    ans2_ur_c = get_ans_yes_or_no_or_another()
+    if ans2_ur_c == 0 :
+        kind_of_age = ['총계']
+    else :
+        kind_of_age = ['15~19세','20~24세','25~29세','30~34세','35~39세','40~44세','45~49세','50~54세','55~59세','60~64세','65세 이상']
+    
+
+    print("모든 성별의 실업률 정보를 출력하시겠습니까? 아니면\n남자만의 실업률 정보를 출력하시겠습니까? 아니면\n여자만의 실업률 정보를 출력하시겠습니까?\n개인 전체 = 2 / 남자 = 1 / 여자 = 0")
+    ans3_ur_c = get_ans_yes_or_no_or_another()
+    if ans3_ur_c ==  0:
+        kind_of_gender.append('여자')
+    elif ans3_ur_c ==  1:
+        kind_of_gender.append('남자')
+    elif ans3_ur_c ==  2:
+        kind_of_gender.append('개인 전체')
+
+    show_Unemployment_Rate(kind_of_country,kind_of_gender,kind_of_age)
+
+def show_Unemployment_Rate(country,gender,age) :
+    global table
+    print("country :",country)
+    print("gender :",gender)
+    print("age :",age)
+    print("1")
+    for i in range(len(table)) :
+        print("i :",i)
+        print("table[i]['1'] == country :",table[i]['1'] == country)
+        if table[i]['1'] == country :
+            
+            print("국가 : {}".format(country))
+            for j in range(len(gender)) :
+                fir_gender = 1
+                if table[i]['2'] == gender[j] :
+                    for k in range(len(age)) :
+                        if table[i]['3'] == age[k] :
+                            if fir_gender == 1 :
+                                print("성별 : {}".format(gender[j]))
+                                fir_gender = 0
+                            print("나이 : {} / 실업률 : {}".format(age[k],table[i]['6']))
+
+
+
+            
+            
+
+
+    
+
+        
+    
+    
     
     
  
 
 print("Hello world!")
 setting_table_level_1()
-show_country_ops_country("러시아")
+'''
+a = str(table)
+for i in range(len(a)) :
+    print(a[i],end='')
+    if a[i] == "}" :
+        print("")
+'''
+show_all_country_ops("한국")
 while True :
     print("OECD 가입국가의 LFS입니다.")
     print("1.국가의 모든 LFS 정보 출력")
+    print("2.실업률 정보 출력")
     ans_main_1 = input("종류선택 : ")
     if ans_main_1 == '1' :
         show_country_ops_center()
+    elif ans_main_1 == '2' :
+        show_Unemployment_Rate_center()
+    else :
+        continue

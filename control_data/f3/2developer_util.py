@@ -5,6 +5,8 @@ print("1\t안녕하세요\t1")
 print("12345678안녕하세요1234567")
 print("안녕하세\t1")
 
+if 'a 'in "apple" :
+    print(True)
 
 word = "7904ghdwpaks"
 

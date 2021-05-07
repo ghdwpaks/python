@@ -196,24 +196,46 @@ def show_Unemployment_Rate(country,gender,age) :
     print("gender :",gender)
     print("age :",age)
     print("1")
+    fir_gender = 1
+    fir_country = 1
+    temp_country = ""
+    temp_gender = ""
     for i in range(len(table)) :
+        
         #print("i :",i)
         #print("table[i]['1'] == country :",table[i]['1'] == country)
+
         for e in range(len(country)) :
-            fir_country = 1
+
             if table[i]['1'] == country[e] :
                 #print("국가 : {}".format(country[e]))
+
                 for j in range(len(gender)) :
-                    fir_gender = 1
+
                     if table[i]['2'] == gender[j] :
+
                         for k in range(len(age)) :
+                            
                             if table[i]['3'] == age[k] :
                                 if fir_country == 1 :
                                     print("국가 : {}".format(country[e]))
                                     fir_country = 0
+                                    temp_country = country[e]
+                                    #print("fir_country :",fir_country)
+                                elif not temp_country == country[e] :
+                                    print("국가 : {}".format(country[e]))
+                                    temp_country = country[e]
+
+
                                 if fir_gender == 1 :
                                     print("성별 : {}".format(gender[j]))
                                     fir_gender = 0
+                                    temp_gender = gender[j]
+                                    #print("1fir_gender :",fir_gender)
+                                elif not temp_gender == gender[j] :
+                                    print("성별 : {}".format(gender[j]))
+                                    temp_gender = gender[j]
+
                                 print("나이 : {} / 실업률 : {}".format(age[k],table[i]['6']))
 
 
@@ -233,6 +255,7 @@ def show_Unemployment_Rate(country,gender,age) :
 
 print("Hello world!")
 setting_table_level_1()
+#print(table)
 '''
 a = str(table)
 for i in range(len(a)) :
@@ -240,7 +263,11 @@ for i in range(len(a)) :
     if a[i] == "}" :
         print("")
 '''
+
 show_all_country_ops("한국")
+print("123456798")
+show_Unemployment_Rate(['한국','그리스'],['개인전체'],['15~19세','20~24세','25~29세','30~34세','35~39세','40~44세','45~49세','50~54세','55~59세','60~64세','65세 이상'])
+print("987654312")
 while True :
     print("OECD 가입국가의 LFS입니다.")
     print("1.국가의 모든 LFS 정보 출력")

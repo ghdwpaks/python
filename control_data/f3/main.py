@@ -220,23 +220,26 @@ def show_Unemployment_Rate(country,gender,age) :
                                 if fir_country == 1 :
                                     print("국가 : {}".format(country[e]))
                                     fir_country = 0
+                                    fir_gender = 1
                                     temp_country = country[e]
                                     #print("fir_country :",fir_country)
                                 elif not temp_country == country[e] :
+                                    fir_gender = 1
                                     print("국가 : {}".format(country[e]))
                                     temp_country = country[e]
 
 
                                 if fir_gender == 1 :
-                                    print("성별 : {}".format(gender[j]))
+                                    print("\t성별 : {}".format(gender[j]))
                                     fir_gender = 0
                                     temp_gender = gender[j]
                                     #print("1fir_gender :",fir_gender)
                                 elif not temp_gender == gender[j] :
-                                    print("성별 : {}".format(gender[j]))
+                                    print("\t성별 : {}".format(gender[j]))
                                     temp_gender = gender[j]
+                                    fir_gender = 1
 
-                                print("나이 : {} / 실업률 : {}".format(age[k],table[i]['6']))
+                                print("\t\t나이 : {} / 실업률 : {}".format(age[k],table[i]['6']))
 
 
 

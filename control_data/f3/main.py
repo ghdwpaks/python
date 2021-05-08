@@ -7,6 +7,7 @@ import copy as c
 print("Hello world!")
 country_names = ['그리스','네덜란드','노르웨이','뉴질랜드','덴마크','독일','라트비아','러시아','룩셈부르크','리투아니아','멕시코','미국','벨기에','스웨덴','스위스','스페인','슬로바키아','슬로베니아','아이슬란드','아일랜드','에스토니아','영국','오스트레일리아','오스트리아','이스라엘','이탈리아','일본','체코','칠레','캐나다','콜롬비아','터키','포르투갈','폴란드','프랑스','핀란드','한국','헝가리']
 genders = ["남자",'여자','개인 전체']
+ages = ["15~19세","15~24세","15~64세","20~24세","25~29세","25~34세","25~54세","25~64세","30~34세","35~39세","35~44세","40~44세","45~49세","45~54세","50~54세","55~59세","55~64세","60~64세","65~69세"]
 
 table = []
 temp = []
@@ -19,10 +20,16 @@ def get_ans_yes_or_no_or_another() :
             return 1
         elif ans == 's' or ans == 'ss'  or ans == 'SS' or ans == 'S' or ans == 'NO' or ans == 'no' or ans == 'n' or ans == 'N' or ans == '0'  or ans == '아니'  or ans == 'ㄴㄴ' or ans == 'ㄴ' or ans == '아니오' or ans == '아니요':
             return 0
-        elif ans == "both" or ans == "BOTH" or ans == "둘다" or ans == "총계" or ans == "총합" or ans == "전부" or ans == "2":
+        elif ans == "both" or ans == "BOTH" or ans == "둘다" or ans == "총계" or ans == "총합" or ans == "전부" or ans == "2" or ans == "B"  or ans == "b"  or ans == "다"  or ans == "총계" or ans == "chdgkq"  or ans == "ckqrP"  or ans == "chdrP"  or ans == "ㅠㅐ소"  or ans == "ㅠㅒ쏘"  or ans == "wjsqn" or ans == "ek"  or ans == "enfek" :
             return 2
         else :
             continue
+
+def make_exit(ans) :
+    #질의응답 부분에서 나갈 수 있게 만들어놓은 함수
+    if ans == "종료" or ans == "exit" or ans == "나가기"  or ans == "ㄷ턋"  or ans == "whdfy"  or ans == "skrkrl"  or ans == "whdfygkrl" :
+        return True
+
 
 def get_ans_kinds_of_country() :
     global country_names
@@ -36,7 +43,7 @@ def get_ans_kinds_of_country() :
             for i in range(0,len(temp_ans)) :
                 print("{}".format(temp_ans[i]),end=" ")
         temp_ans_country_name = input("\n입력 : ")
-        if temp_ans_country_name == "종료" or temp_ans_country_name == "exit" :
+        if make_exit(temp_ans_country_name) :
             if len(temp_ans) < 2 :
                 print("적어도 두개를 고르셔야합니다.")
                 continue
@@ -47,6 +54,54 @@ def get_ans_kinds_of_country() :
         else :
             continue
     return temp_ans
+
+def get_ans_choose_age() :
+    global ages
+    res = []
+    temp_ages = []#temp_ages는 나이에서 (ex:15~19세) '세'라는 단어를 뺀 것
+    for i in range(len(ages)) :
+        temp_ages.append(ages[i][:-1])
+    #print("temp_ages:",temp_ages)
+    while True :
+        print("출력 가능한 나이는 다음과 같습니다.")
+        for i in range(len(ages)) :
+            if i % 5 == 0 :
+                print("\n")
+            print("{}".format(ages[i]),end='\t')
+
+        if not len(res) == 0 :
+            print("\n지금까지 추가한 나이대 :",end="")
+            for i in range(len(res)) :
+                print(res[i],end=" ")
+        print()
+        ans = input("입력 : ")
+        if make_exit(ans) :
+            if len(res) < 2 :
+                print("적어도 두개를 고르셔야합니다.")
+                continue
+            else :
+                break
+        if ans in ages :
+            res.append(ans)
+        elif ans in temp_ages :
+            locate_of_ages = temp_ages.index(ans)
+            res.append(ages[locate_of_ages])
+        else :
+            print("해당 나이대는 출력할 수 없습니다.")
+    return res
+        
+
+def get_ans_kinds_of_age() :
+    print("모든 나이의 실업률 정보를 출력하시겠습니까? 아니면\n실업률 총계만 출력하시겠습니까?\n모든 나이 = Y / 총계만 = N, 나이 선택 = 2")
+    res = []
+    ans2_ur_c = get_ans_yes_or_no_or_another()
+    if ans2_ur_c == 0 :
+        res.append('총계')
+    elif ans2_ur_c == 1:
+        res = ['15~19세','20~24세','25~29세','30~34세','35~39세','40~44세','45~49세','50~54세','55~59세','60~64세','65세 이상']
+    elif ans2_ur_c == 2:
+        res = get_ans_choose_age()
+    return res
 
 
 
@@ -158,6 +213,7 @@ def show_Unemployment_Rate_center() :
     kind_of_country = []
     kind_of_gender = []
     #!여기 부분 종류 고르는 것들 구조화 시켜서 더 다양하게 고를 수 있게 하기
+
     print("모든 국가의 실업률 정보를 출력하시겠습니까? (Y/N)")
     ans1_ur_c = get_ans_yes_or_no_or_another()
     if ans1_ur_c == 1 :
@@ -165,13 +221,7 @@ def show_Unemployment_Rate_center() :
     else :
         kind_of_country = get_ans_kinds_of_country()
 
-
-    print("모든 나이의 실업률 정보를 출력하시겠습니까? 아니면\n실업률 총계만 출력하시겠습니까?\n모든 나이 = Y / 총계만 = N")
-    ans2_ur_c = get_ans_yes_or_no_or_another()
-    if ans2_ur_c == 0 :
-        kind_of_age = ['총계']
-    else :
-        kind_of_age = ['15~19세','20~24세','25~29세','30~34세','35~39세','40~44세','45~49세','50~54세','55~59세','60~64세','65세 이상']
+    kind_of_age = get_ans_kinds_of_age()
     
 
     print("모든 성별의 실업률 정보를 출력하시겠습니까? 아니면\n남자만의 실업률 정보를 출력하시겠습니까? 아니면\n여자만의 실업률 정보를 출력하시겠습니까?\n개인 전체 = 2 / 남자 = 1 / 여자 = 0")

@@ -180,7 +180,9 @@ def get_real_length_on_CMD(string) :
                 count += 1
             else :
                 count += 2 
+    #print("GRLOC :",count)
     return count
+    
 
 def check_country_section(country_name) :
     #나라 이름 받고서 country_names에 해당하는 위치(상수)를 반환함.
@@ -361,8 +363,13 @@ def show_Rate(country,gender,age,print_type) :
                                         print("\t성별 : {}".format(gender[j]))
                                         temp_gender = gender[j]
                                         fir_gender = 1
-
-                                    print("\t\t나이 : {} / {} : {}".format(age[k],print_kind_of_type(print_type[m]),table[i]['6']))
+                                    print("\t\t",end="")
+                                    if get_real_length_on_CMD("{}".format(age[k])) <= 8 :
+                                        print("나이 : {}\t ".format(age[k]),end="")
+                                    else :
+                                        print("나이 : {} ".format(age[k]),end="")
+                                    print("{} : {}".format(print_kind_of_type(print_type[m]),table[i]['6']))
+                                    #print("나이 : {} / {} : {}".format(age[k],print_kind_of_type(print_type[m]),table[i]['6']))
                                 
 
     
@@ -397,7 +404,7 @@ print("987654312")
 while True :
     print("OECD 가입국가의 LFS입니다.")
     print("1.국가의 모든 LFS 정보 출력")
-    print("2.실업률 정보 출력")
+    print("2.종목별 정보 출력")
     ans_main_1 = input("종류선택 : ")
     if ans_main_1 == '1' :
         show_country_ops_center()

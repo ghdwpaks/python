@@ -34,26 +34,35 @@ def make_exit(ans) :
 def get_ans_kinds_of_country() :
     global country_names
     temp_ans = []
-    while True :
-        print("사용가능한 국가는 다음과 같습니다.(고르기 종료 : exit입력)")
-        show_all_country_names()
-        print()
-        if len(temp_ans)!=0 :
-            print("지금까지 고른 국가 :",end=" ")
-            for i in range(0,len(temp_ans)) :
-                print("{}".format(temp_ans[i]),end=" ")
-        temp_ans_country_name = input("\n입력 : ")
-        if make_exit(temp_ans_country_name) :
-            if len(temp_ans) < 2 :
-                print("적어도 두개를 고르셔야합니다.")
-                continue
+    res = []
+
+
+    print("모든 국가의 실업률 정보를 출력하시겠습니까? (Y/N)")
+    ans1_ur_c = get_ans_yes_or_no_or_another()
+    if ans1_ur_c == 1 :
+        res = c.deepcopy(country_names)
+    else :
+        while True :
+            print("사용가능한 국가는 다음과 같습니다.(고르기 종료 : exit입력)")
+            show_all_country_names()
+            print()
+            if len(temp_ans)!=0 :
+                print("지금까지 고른 국가 :",end=" ")
+                for i in range(0,len(temp_ans)) :
+                    print("{}".format(temp_ans[i]),end=" ")
+            temp_ans_country_name = input("\n입력 : ")
+            if make_exit(temp_ans_country_name) :
+                if len(temp_ans) < 2 :
+                    print("적어도 두개를 고르셔야합니다.")
+                    continue
+                else :
+                    break
+            if temp_ans_country_name in country_names :
+                temp_ans.append(temp_ans_country_name)
             else :
-                break
-        if temp_ans_country_name in country_names :
-            temp_ans.append(temp_ans_country_name)
-        else :
-            continue
-    return temp_ans
+                continue
+        res = c.deepcopy(temp_ans)
+    return res
 
 def get_ans_choose_age() :
     global ages
@@ -101,6 +110,18 @@ def get_ans_kinds_of_age() :
         res = ['15~19세','20~24세','25~29세','30~34세','35~39세','40~44세','45~49세','50~54세','55~59세','60~64세','65세 이상']
     elif ans2_ur_c == 2:
         res = get_ans_choose_age()
+    return res
+
+def get_ans_kinds_of_gender() :
+    print("모든 성별의 실업률 정보를 출력하시겠습니까? 아니면\n남자만의 실업률 정보를 출력하시겠습니까? 아니면\n여자만의 실업률 정보를 출력하시겠습니까?\n개인 전체 = 2 / 남자 = 1 / 여자 = 0")
+    res = []
+    ans3_ur_c = get_ans_yes_or_no_or_another()
+    if ans3_ur_c ==  0:
+        res.append('여자')
+    elif ans3_ur_c ==  1:
+        res.append('남자')
+    elif ans3_ur_c ==  2:
+        res.append('개인 전체')
     return res
 
 
@@ -163,6 +184,7 @@ def show_all_country_names() :
 def show_all_country_ops(country_name) :
     global table
     fir = 1
+    count_line = 0
     print("국가 : {}".format(country_name))
     for i in range(len(table)) :
         
@@ -183,6 +205,9 @@ def show_all_country_ops(country_name) :
             else :
                 print("\t{0}\t\t".format(table[i]['3']),end="")
             print("\t{0:.2f}\t\t{1:.2f}\t\t{2:.2f}".format(float(table[i]['4']),float(table[i]['5']),float(table[i]['6'])))
+            count_line += 1
+            if count_line % 5 == 0 :
+                print()
             '''
             print("\t연령 : {}".format(table[i]['3']))
             print("\t\t고용인구비율 : {}".format(table[i]['4']))
@@ -214,24 +239,13 @@ def show_Unemployment_Rate_center() :
     kind_of_gender = []
     #!여기 부분 종류 고르는 것들 구조화 시켜서 더 다양하게 고를 수 있게 하기
 
-    print("모든 국가의 실업률 정보를 출력하시겠습니까? (Y/N)")
-    ans1_ur_c = get_ans_yes_or_no_or_another()
-    if ans1_ur_c == 1 :
-        kind_of_country = c.deepcopy(country_names)
-    else :
-        kind_of_country = get_ans_kinds_of_country()
+    kind_of_country = get_ans_kinds_of_country()
 
     kind_of_age = get_ans_kinds_of_age()
     
+    kind_of_gender = get_ans_kinds_of_gender()
 
-    print("모든 성별의 실업률 정보를 출력하시겠습니까? 아니면\n남자만의 실업률 정보를 출력하시겠습니까? 아니면\n여자만의 실업률 정보를 출력하시겠습니까?\n개인 전체 = 2 / 남자 = 1 / 여자 = 0")
-    ans3_ur_c = get_ans_yes_or_no_or_another()
-    if ans3_ur_c ==  0:
-        kind_of_gender.append('여자')
-    elif ans3_ur_c ==  1:
-        kind_of_gender.append('남자')
-    elif ans3_ur_c ==  2:
-        kind_of_gender.append('개인 전체')
+    
 
     show_Unemployment_Rate(kind_of_country,kind_of_gender,kind_of_age)
 

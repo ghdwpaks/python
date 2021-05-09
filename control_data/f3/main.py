@@ -124,6 +124,49 @@ def get_ans_kinds_of_gender() :
         res.append('개인 전체')
     return res
 
+def get_ans_kinds_of_type() :
+    res = []
+    while True :
+        print("출력하고싶으신 사항을 고르세요.")
+        print("1. 고용/인구 비율")
+        print("2. 노동참여 비율")
+        print("3. 실업률")
+        print("4. 전부")
+        ans = input("입력 : ")
+        
+        if ans == '1' :
+            res.append("4")
+            break
+        elif ans == "2" :
+            res.append("5")
+            break
+        elif ans == "3" :
+            res.append("6")
+            break
+        elif ans == "4" :
+            res.append("4")
+            res.append("5")
+            res.append("6")
+            break
+        else :
+            print("알맞게 숫자만 입력해주세요.")
+            continue
+    return res
+        
+def print_kind_of_type(print_type) :
+    res = ""
+    if print_type == "4" :
+        res = "고용/인구 비율"
+    elif print_type == '5' :
+        res = "노동참여 비율"
+    elif print_type == '6' :
+        res = "실업률"
+    else :
+        res = '에러'
+    #print(res)
+    return res
+    
+
 
 
 def get_real_length_on_CMD(string) :
@@ -229,7 +272,7 @@ def show_country_ops_center() :
             print("해당 국가는 포함되지 않았습니다.")
     show_all_country_ops(ans1_country)
         
-def show_Unemployment_Rate_center() :
+def show_Rate_center() :
     #나라별 실업률 정보 출력 기능 센터
     global country_names
 
@@ -237,6 +280,7 @@ def show_Unemployment_Rate_center() :
     kind_of_age = []
     kind_of_country = []
     kind_of_gender = []
+    kind_of_type = []
     #!여기 부분 종류 고르는 것들 구조화 시켜서 더 다양하게 고를 수 있게 하기
 
     kind_of_country = get_ans_kinds_of_country()
@@ -245,11 +289,12 @@ def show_Unemployment_Rate_center() :
     
     kind_of_gender = get_ans_kinds_of_gender()
 
+    kind_of_type = get_ans_kinds_of_type()
     
 
-    show_Unemployment_Rate(kind_of_country,kind_of_gender,kind_of_age)
+    show_Rate(kind_of_country,kind_of_gender,kind_of_age,kind_of_type)
 
-def show_Unemployment_Rate(country,gender,age) :
+def show_Rate(country,gender,age,print_type) :
     global table
     '''
     이건 각 나라의 성별, 나이에 따라 실업률을 출력할 수 있습니다.
@@ -259,53 +304,68 @@ def show_Unemployment_Rate(country,gender,age) :
     print("country :",country)
     print("gender :",gender)
     print("age :",age)
+    print("print_type :",print_type)
     print("1")
     fir_gender = 1
     fir_country = 1
+    fir_type = 1
     temp_country = ""
     temp_gender = ""
-    for i in range(len(table)) :
-        
-        #print("i :",i)
-        #print("table[i]['1'] == country :",table[i]['1'] == country)
+    temp_type = ""
+    for m in range(len(print_type)) :
+        for i in range(len(table)) :
+            
+            #print("i :",i)
+            #print("table[i]['1'] == country :",table[i]['1'] == country)
 
-        for e in range(len(country)) :
+            for e in range(len(country)) :
 
-            if table[i]['1'] == country[e] :
-                #print("국가 : {}".format(country[e]))
+                if table[i]['1'] == country[e] :
+                    #print("국가 : {}".format(country[e]))
 
-                for j in range(len(gender)) :
+                    for j in range(len(gender)) :
 
-                    if table[i]['2'] == gender[j] :
+                        if table[i]['2'] == gender[j] :
 
-                        for k in range(len(age)) :
-                            
-                            if table[i]['3'] == age[k] :
-                                if fir_country == 1 :
-                                    print("국가 : {}".format(country[e]))
-                                    fir_country = 0
-                                    fir_gender = 1
-                                    temp_country = country[e]
-                                    #print("fir_country :",fir_country)
-                                elif not temp_country == country[e] :
-                                    fir_gender = 1
-                                    print("국가 : {}".format(country[e]))
-                                    temp_country = country[e]
+                            for k in range(len(age)) :
+                                
+                                if table[i]['3'] == age[k] :
+                                    if fir_type == 1 :
+                                        print("주제 : {}".format(print_kind_of_type(print_type[m])))
+                                        fir_type = 0
+                                        fir_country = 1
+                                        fir_gender = 1
+                                        temp_type = print_type[m]
+                                    elif not temp_type == print_type[m] :
+                                        print("주제 : {}".format(print_kind_of_type(print_type[m])))
+                                        temp_type = print_type[m]
 
-
-                                if fir_gender == 1 :
-                                    print("\t성별 : {}".format(gender[j]))
-                                    fir_gender = 0
-                                    temp_gender = gender[j]
-                                    #print("1fir_gender :",fir_gender)
-                                elif not temp_gender == gender[j] :
-                                    print("\t성별 : {}".format(gender[j]))
-                                    temp_gender = gender[j]
-                                    fir_gender = 1
-
-                                print("\t\t나이 : {} / 실업률 : {}".format(age[k],table[i]['6']))
+                                    if fir_country == 1 :
+                                        print("국가 : {}".format(country[e]))
+                                        fir_country = 0
+                                        fir_gender = 1
+                                        temp_country = country[e]
+                                        #print("fir_country :",fir_country)
+                                    elif not temp_country == country[e] :
+                                        fir_gender = 1
+                                        print("국가 : {}".format(country[e]))
+                                        temp_country = country[e]
 
 
+                                    if fir_gender == 1 :
+                                        print("\t성별 : {}".format(gender[j]))
+                                        fir_gender = 0
+                                        temp_gender = gender[j]
+                                        #print("1fir_gender :",fir_gender)
+                                    elif not temp_gender == gender[j] :
+                                        print("\t성별 : {}".format(gender[j]))
+                                        temp_gender = gender[j]
+                                        fir_gender = 1
+
+                                    print("\t\t나이 : {} / {} : {}".format(age[k],print_kind_of_type(print_type[m]),table[i]['6']))
+                                
+
+    
 
             
             
@@ -333,7 +393,6 @@ for i in range(len(a)) :
 
 show_all_country_ops("한국")
 print("123456798")
-show_Unemployment_Rate(['한국','그리스'],['개인전체'],['15~19세','20~24세','25~29세','30~34세','35~39세','40~44세','45~49세','50~54세','55~59세','60~64세','65세 이상'])
 print("987654312")
 while True :
     print("OECD 가입국가의 LFS입니다.")
@@ -343,6 +402,6 @@ while True :
     if ans_main_1 == '1' :
         show_country_ops_center()
     elif ans_main_1 == '2' :
-        show_Unemployment_Rate_center()
+        show_Rate_center()
     else :
         continue

@@ -43,6 +43,44 @@ def setting_product_long_name() :
             names_product.append(table[i]['1'])
     return names_product
 
+def setting_kinds_of_subjects() :
+    global table
+    n = setting_product_long_name()
+    temp = []
+
+    temp_n1 = [] #이름 구분
+    temp_n2 = [] #단위 구분
+    temp_n3 = [] #등급 구분
+
+    temp_sub_name = n[0] #종목변경인식용 변수
+    for i in range(len(table)) :
+        for j in range(len(n)) :
+
+            if table[i]['1'] == n[j] :
+                if not table[i]['1'] == temp_sub_name :
+                    for k in range(len(temp)) :
+                        if table[i]['1'] not in names_product :
+                            names_product.append(table[i]['1'])
+                        if temp_n1 == temp[k]['1'] :
+                            if temp_n2 == temp[k]['2'] :
+                                if temp_n3 == temp[k]['3'] :
+                                    
+
+                        temp_n1 = temp[k]['1']
+                        temp_n2 = temp[k]['2']
+                        temp_n3 = temp[k]['3']
+
+
+
+                temp.append(table[i])
+                '''
+                if table[i]['2'] not in temp_n1 :
+                    temp_n1.append(table[i]['2'])
+                temp_sub_name = table[i]['1']
+                for k in range(len(temp_n1)) :
+                '''
+                
+    for i in range(len(temp_n1)) :
 
 
 

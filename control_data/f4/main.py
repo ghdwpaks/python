@@ -133,10 +133,36 @@ def get_big_subject_name(num,keyword) :
             if subs_name[i][j] == keyword :
                 target_point = j
                 break
-        if not subs_name[i][:(target_point+1)] in big_subs_names :
+        if not subs_name[i][:(target_point+1)] in big_subs_names  :
             big_subs_names.append(subs_name[i][:(target_point+1)])
     return big_subs_names
 
+def get_real_length_on_CMD(string) :
+    count = 0
+    for i in range(len(string)) :
+        if string[i].encode().isdigit() :
+            count += 1
+        else :
+            if string[i] == "]" or string[i] == "[" or string[i] == ")" or string[i] == "(" or string[i].encode().isalpha():
+                #영어 맞음
+                count += 1
+            else :
+                count += 2 
+    #print("GRLOC :",count)
+    return count
+
+def sector_sub1() :
+    sub_name = get_big_subject_name(1,']')
+    for i in range(len(sub_name)) :
+        if i % 6 == 0 and i != 0:
+            print()
+        print(sub_name[i],end="\t")
+        if get_real_length_on_CMD(sub_name[i]) < 8 :
+            print("\t\t",end="")
+        elif get_real_length_on_CMD(sub_name[i]) < 16 :
+            print("\t",end="")
+    print()
+            
 
 
 

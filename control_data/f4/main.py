@@ -8,11 +8,7 @@ with open('table.csv','r') as f :
         table.append(row)
         #print(row)
 
-a = str(table)
-for i in range(len(a)) :
-    print(a[i],end='')
-    if a[i] == "}" :
-        print("")
+
 
 def setting_product_short_name() :
     global table
@@ -44,8 +40,12 @@ def setting_product_long_name() :
     return names_product
 
 def setting_kinds_of_subjects() :
+    #구축중단
     global table
     n = setting_product_long_name()
+    print("\n\n\n")
+    print("n :",n)
+    print("\n\n\n")
     temp = []
 
     temp_n1 = [] #이름 구분
@@ -64,7 +64,7 @@ def setting_kinds_of_subjects() :
                         if temp_n1 == temp[k]['1'] :
                             if temp_n2 == temp[k]['2'] :
                                 if temp_n3 == temp[k]['3'] :
-                                    
+                                    pass
 
                         temp_n1 = temp[k]['1']
                         temp_n2 = temp[k]['2']
@@ -81,7 +81,7 @@ def setting_kinds_of_subjects() :
                 '''
                 
     for i in range(len(temp_n1)) :
-
+        pass
 
 
 
@@ -97,15 +97,49 @@ def integrate_subjects() :
                 temp.append(table[j])
                 
 
+def print_table_at_str(target_table,keyword) :
+    strings = str(target_table)
+    for i in range(len(strings)) :
+        print(strings[i],end='')
+        if strings[i] == keyword :
+            print("")
 
+def get_subject_count(sub_name) :
+    count = 0 
+    for i in range(len(table)) :
+        for j in range(1,8) :
+            if table[i][str(j)] == sub_name :
+                count += 1    
+    print(count)
+    return count
 
+def get_subjects_name(num) :
+    global table
+    num = str(num)
+    subs = []
+    for i in range(len(table)) :
+        if table[i][num] not in subs :
+            subs.append(table[i][num])
+    subs.sort()
+    #print(subs)
+    return subs
 
+def get_big_subject_name(num,keyword) :
+    subs_name = get_subjects_name(num)
+    big_subs_names = []
+    for i in range(len(subs_name)) :
+        target_point = 0
+        for j in range(len(subs_name[i])) :
+            if subs_name[i][j] == keyword :
+                target_point = j
+                break
+        if not subs_name[i][:(target_point+1)] in big_subs_names :
+            big_subs_names.append(subs_name[i][:(target_point+1)])
+    return big_subs_names
+#1등급을 고른다면, 각 항목에 관한 것들 출력 해주기
 
-    
-count = 0 
-for i in range(len(table)) :
-    if table[i]['3'] == "특(1등)" :
-        count += 1
-    
-print(count)
-print(len(table))
+lank_1 = get_big_subject_name(1,"]")
+sec_6 = get_subjects_name(6)
+print(sec_6)
+#print_table_at_str(lank_1,',')
+#print("\n\n",len(lank_1))

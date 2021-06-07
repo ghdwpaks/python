@@ -250,9 +250,6 @@ def show_all_country_ops(country_name) :
             else :
                 print("\t{0}\t\t".format(table[i]['3']),end="")
             print("\t{0:.2f}\t\t{1:.2f}\t\t{2:.2f}".format(float(table[i]['4']),float(table[i]['5']),float(table[i]['6'])))
-            count_line += 1
-            if count_line % 5 == 0 :
-                print()
             '''
             print("\t연령 : {}".format(table[i]['3']))
             print("\t\t고용인구비율 : {}".format(table[i]['4']))
@@ -397,10 +394,11 @@ for i in range(len(a)) :
     if a[i] == "}" :
         print("")
 '''
-
+'''
 show_all_country_ops("한국")
 print("123456798")
 print("987654312")
+'''
 while True :
     print("OECD 가입국가의 LFS입니다.")
     print("1.국가의 모든 LFS 정보 출력")

@@ -9,7 +9,7 @@ with open('table1.csv','r') as f :
     for row in reader :
         t.append(row)
         print(row)
-
+print(t)
 print("Hello world!")
 #print(t)
 targetc = 0 #도시 타겟 지정
@@ -87,12 +87,12 @@ def setting_rank() :
         print(rt[i])
     #print(rt)
 def show_rank() :
-    os.system('cls')
+    #os.system('cls')
     print(subject_s)
     for i in range(len(rt[0])) :
         print(i+1,".",pcn(rt[subject][i][1]),":",rt[subject][i][0])
         #print("{}. {} : {}",format(i,rt[subject][i][1],rt[subject][i][0]))
-    os.system('pause')
+    #os.system('pause')
 
 def pcn(name) :#print city name
     name = int(name)
@@ -157,7 +157,7 @@ def choose_subject() :
     p = True
     while p :
         #print("\n\n\n")
-        os.system('cls')
+        # os.system('cls')
         print("1.15세 이상 인구(천명)")
         print("2.경제 활동 인구(천명)")
         print("3.취업자(천명)")
@@ -262,7 +262,7 @@ def show_ops() :
             print("경제활동참가율(%):\t",t[i]['8'])
             print("고용률(%):\t\t",t[i]['9'])
             print("실업률(%):\t\t",t[i]['10'])
-    os.system('pause')
+    #os.system('pause')
 def choose_city() :
     global targetc
     p = True
@@ -311,7 +311,7 @@ def choose_func(input1) :
 
 p = True
 while p :
-    os.system("cls")
+    #os.system("cls")
     #print("\n\n\n")
     print("1.도시별 데이터 출력")
     print("2.데이터별 도시 순위")

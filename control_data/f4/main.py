@@ -136,10 +136,28 @@ def get_big_subject_name(num,keyword) :
         if not subs_name[i][:(target_point+1)] in big_subs_names :
             big_subs_names.append(subs_name[i][:(target_point+1)])
     return big_subs_names
+
+
+
+
+
+
+
 #1등급을 고른다면, 각 항목에 관한 것들 출력 해주기
 
 lank_1 = get_big_subject_name(1,"]")
-sec_6 = get_subjects_name(6)
-print(sec_6)
 #print_table_at_str(lank_1,',')
 #print("\n\n",len(lank_1))
+
+while True :
+    print("농수산물 정보 출력 시스템에 진입했습니다.")
+    print("원하는 기능을 '숫자로만' 선택해주세요.")
+    print("1.품목명별 정보 출력")
+    print("2.단위별 정보 출력")
+    print("3.등급별 정보 출력")
+    print("4.가격별 정보 출력")
+    print("5.산지별 정보 출력")
+    print("6.친환경 구분별 정보 출력")
+    select1_subject = input("입력 : ")
+    if select1_subject == '1' :
+        sector_sub1()

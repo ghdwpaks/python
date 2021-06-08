@@ -24,8 +24,31 @@ def sector_sub1(table) :
         else :
             print("주제를 정확히 입력해주세요.")
     res_ops = f.gets.select_ops_by_keyword(subs_ops,ans2,1)
-    print("res_ops :",res_ops)
+    #print("res_ops :",res_ops)
     f.prints.print_table_at_str(res_ops,"}")
+    
+    temp_sub = [res_ops[0]['1'],res_ops[0]['2'],res_ops[0]['3']]
+    print()
+    print(temp_sub)
+    res = []
+    cost = 0
+    addcost_count = 0
+    for i in range(len(res_ops)) :
+        canpass = True
+        for j in range(len(temp_sub)) :
+            if res_ops[i][str(j+1)] == temp_sub[j] :
+                cost += int(res_ops[i]['4'])
+                addcost_count += 1
+            else :
+                canpass = False
+        if canpass and i != len(res_ops)-1 :
+            cost += int(res_ops[i]['4'])
+        else :
+            res.append([temp_sub[0],temp_sub[1],temp_sub[2],cost//addcost_count])
+            temp_sub = [res_ops[i]['1'],res_ops[i]['2'],res_ops[i]['3']]
+            cost = 0
+    print(res)
+        
     
     
     

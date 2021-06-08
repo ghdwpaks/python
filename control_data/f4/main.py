@@ -5,19 +5,35 @@ import functions as f
 def sector_sub1(table) :
 
     sub_name = f.gets.get_big_subject_name(table,1,']')
-    for i in range(len(sub_name)) :
-        if i % 6 == 0 and i != 0:
-            print()
-        print(sub_name[i],end="\t")
-        if f.gets.get_real_length_on_CMD(sub_name[i]) < 8 :
-            print("\t\t",end="")
-        elif f.gets.get_real_length_on_CMD(sub_name[i]) < 16 :
-            print("\t",end="")
+    f.prints.print_strings_dived(sub_name)
     print()
+    ans1_big_subs = input("주제 입력 :")
+    ans1_big_subs = f.setting.sealing_input_sub(ans1_big_subs)
+    subs_ops = f.gets.select_ops_by_keyword(table,ans1_big_subs,1)
+    #f.prints.print_table_at_str(subs_ops,'}')
+    sub_small_name = f.gets.get_subjects_name(subs_ops,1)
+
+    ans2 = ""
+    while True :
+        print(ans1_big_subs,"에 적합한 품목은 다음과 같습니다.")
+        f.prints.print_strings_dived(sub_small_name)
+        print()
+        ans2 = input("주제 입력 : ")
+        if ans2 in sub_small_name :
+            break
+        else :
+            print("주제를 정확히 입력해주세요.")
+    res_ops = f.gets.select_ops_by_keyword(subs_ops,ans2,1)
+    print("res_ops :",res_ops)
+    f.prints.print_table_at_str(res_ops,"}")
+    
+    
+    
             
 
 
 
+ 
 
 
 

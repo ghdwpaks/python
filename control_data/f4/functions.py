@@ -7,9 +7,38 @@ class prints :
             print(strings[i],end='')
             if strings[i] == keyword :
                 print("")
+    
+    def print_strings_dived(sub_names) :
+        
+        for i in range(len(sub_names)) :
+            if i % 5 == 0 and i != 0:
+                print()
+            print(sub_names[i],end="\t")
+            if gets.get_real_length_on_CMD(sub_names[i]) < 8 :
+                print("\t\t",end="")
+            elif gets.get_real_length_on_CMD(sub_names[i]) < 16 :
+                print("\t",end="")
+
+class setting :
+    def sealing_input_sub(input_sub) :
+        input_sub = list(input_sub)
+        if input_sub[0] != "[" :
+            input_sub.insert(0,"[")
+        if input_sub[len(input_sub)-1] != "]" :
+            input_sub.insert(len(input_sub),"]")
+        input_sub = "".join(input_sub)
+        return input_sub
+
 
 class gets :
-
+    def select_ops_by_keyword(table,keyword,sector) :
+        res = []
+        keyword = str(keyword)
+        sector = str(sector)
+        for i in range(len(table)) :
+            if keyword in table[i][sector] :
+                res.append(table[i])
+        return res
     
     def get_table(filepath) :
         #table.csv

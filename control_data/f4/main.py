@@ -47,7 +47,9 @@ def sector_sub1(table) :
             res.append([temp_sub[0],temp_sub[1],temp_sub[2],cost//addcost_count])
             temp_sub = [res_ops[i]['1'],res_ops[i]['2'],res_ops[i]['3']]
             cost = 0
+            addcost_count = 0
     print(res)
+    f.prints.print_table_at_str(res,']')
         
     
     

@@ -24,8 +24,52 @@ def sector_sub1(table) :
         else :
             print("주제를 정확히 입력해주세요.")
     res_ops = f.gets.select_ops_by_keyword(subs_ops,ans2,1)
-    #print("res_ops :",res_ops)
+    
     f.prints.print_table_at_str(res_ops,"}")
+    sorted_res_ops = []
+    sec2_type = []
+    for i in range(len(res_ops)) :
+        if res_ops[i]['2'] not in sec2_type :
+            sec2_type.append(res_ops[i]['2'])
+    sec2_type.sort()
+
+    sec3_type = []
+    for i in range(len(res_ops)) :
+        if res_ops[i]['3'] not in sec3_type :
+            sec3_type.append(res_ops[i]['3'])
+    sec3_type.sort()
+
+    temp_res_ops2 = []
+    for i in range(len(sec2_type)) :
+        sec2_temp = []
+        for j in range(len(res_ops)) :
+            if sec2_type[i] == res_ops[j]['2'] :
+                sec2_temp.append(res_ops[j])
+        temp_res_ops2.append(sec2_temp)
+
+    print("\n\n\n\ntemp_res_ops2")
+    f.prints.print_table_at_str(temp_res_ops2,"}")
+    print("\ntemp_res_ops2\n\n\n")
+    print("len(sec3_type) :",len(sec3_type))
+
+    temp_res_ops3 = []
+    for i in range(len(sec3_type)) :
+        sec3_temp = []
+        for j in range(len(temp_res_ops2)) :
+            for k in range(len(temp_res_ops2[j])) :
+                if sec3_type[i] == temp_res_ops2[j][k]['3'] :
+                    sec3_temp.append(temp_res_ops2[j][k])
+        temp_res_ops3.append(sec3_temp)
+    print("\n\n\n\ntemp_res_ops3")
+    f.prints.print_table_at_str(temp_res_ops3,"}")
+    print("\ntemp_res_ops3\n\n\n")
+
+    for i in range(len(temp_res_ops3)) :
+        for j in range(len(temp_res_ops3[i])) :
+            sorted_res_ops.append(temp_res_ops3[i][j])
+    print("\n\n\n\nsorted_res_ops")
+    f.prints.print_table_at_str(sorted_res_ops,"}")
+    print("\nsorted_res_ops\n\n\n\n")          
     
     temp_sub = [res_ops[0]['1'],res_ops[0]['2'],res_ops[0]['3']]
     print()

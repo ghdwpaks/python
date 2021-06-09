@@ -46,12 +46,12 @@ def sector_sub1(table) :
             if sec2_type[i] == res_ops[j]['2'] :
                 sec2_temp.append(res_ops[j])
         temp_res_ops2.append(sec2_temp)
-
+    '''
     print("\n\n\n\ntemp_res_ops2")
     f.prints.print_table_at_str(temp_res_ops2,"}")
     print("\ntemp_res_ops2\n\n\n")
     print("len(sec3_type) :",len(sec3_type))
-
+    '''
     temp_res_ops3 = []
     for i in range(len(sec3_type)) :
         sec3_temp = []
@@ -60,36 +60,38 @@ def sector_sub1(table) :
                 if sec3_type[i] == temp_res_ops2[j][k]['3'] :
                     sec3_temp.append(temp_res_ops2[j][k])
         temp_res_ops3.append(sec3_temp)
+    '''
     print("\n\n\n\ntemp_res_ops3")
     f.prints.print_table_at_str(temp_res_ops3,"}")
     print("\ntemp_res_ops3\n\n\n")
-
+    '''
     for i in range(len(temp_res_ops3)) :
         for j in range(len(temp_res_ops3[i])) :
             sorted_res_ops.append(temp_res_ops3[i][j])
+    '''
     print("\n\n\n\nsorted_res_ops")
     f.prints.print_table_at_str(sorted_res_ops,"}")
     print("\nsorted_res_ops\n\n\n\n")          
-    
-    temp_sub = [res_ops[0]['1'],res_ops[0]['2'],res_ops[0]['3']]
+    '''
+    temp_sub = [sorted_res_ops[0]['1'],sorted_res_ops[0]['2'],sorted_res_ops[0]['3']]
     print()
     print(temp_sub)
     res = []
     cost = 0
     addcost_count = 0
-    for i in range(len(res_ops)) :
+    for i in range(len(sorted_res_ops)) :
         canpass = True
         for j in range(len(temp_sub)) :
-            if res_ops[i][str(j+1)] == temp_sub[j] :
-                cost += int(res_ops[i]['4'])
+            if sorted_res_ops[i][str(j+1)] == temp_sub[j] :
+                cost += int(sorted_res_ops[i]['4'])
                 addcost_count += 1
             else :
                 canpass = False
-        if canpass and i != len(res_ops)-1 :
-            cost += int(res_ops[i]['4'])
+        if canpass and i != len(sorted_res_ops)-1 :
+            cost += int(sorted_res_ops[i]['4'])
         else :
             res.append([temp_sub[0],temp_sub[1],temp_sub[2],cost//addcost_count])
-            temp_sub = [res_ops[i]['1'],res_ops[i]['2'],res_ops[i]['3']]
+            temp_sub = [sorted_res_ops[i]['1'],sorted_res_ops[i]['2'],sorted_res_ops[i]['3']]
             cost = 0
             addcost_count = 0
     print(res)

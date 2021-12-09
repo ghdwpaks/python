@@ -58,7 +58,7 @@ class gets :
             if string[i].encode().isdigit() :
                 count += 1
             else :
-                if string[i] == "]" or string[i] == "[" or string[i] == ")" or string[i] == "(" or string[i].encode().isalpha():
+                if string[i] == "]" or string[i] == "[" or string[i] == ")" or string[i] == "(" or string[i] == "/" or string[i] == "\"" or string[i].encode().isalpha():
                     #영어 맞음
                     count += 1
                 else :
